@@ -65,3 +65,30 @@ def calcular_cambio(cambio: int) -> str:
     c50 = cambio // 50
     cadena = str(c500) + "," + str(c200) + "," + str(c100) + "," + str(c50)
     return cadena
+
+
+def suma_n_enteros_positivos(n: int) -> int:
+    """ Suma de los primeros N enteros positivos
+    Parámetros:
+      n (int): Número entero hasta el cual se quiere calcular la suma, desde 1
+    Retorno:
+      int: Suma de los primeros N enteros positivos.
+    """
+    suma = n * (n + 1) / 2
+    suma = int(suma)
+    return suma
+
+
+def calcular_iva_propina_total_factura(costo_factura: int) -> str:
+    """ IVA y propina
+    Parámetros:
+      costo_factura (int): Costo de la factura del restaurante, sin impuestos ni propina
+    Retorno:
+      str: Cadena con el iva, propina y total de la factura, separados por coma
+    """
+    iva = costo_factura * 0.19
+    propina = costo_factura * 0.10
+    total = iva + propina + costo_factura
+    cadena = str(round(iva)) + "," + str(round(propina)) + "," + str(round(total))
+    return cadena
+
