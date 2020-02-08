@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+"""
+@author: alxus27
+"""
+
 # Programa para calcular la energía necesaria para cambiar la temperatura de una masa de agua
 
 ### Salto de línea
@@ -29,7 +34,8 @@ energia = masa_agua * capacidad_calorifica * cambio_temperatura
 energia = str(round(energia, 2))
 
 # Muestra del resultado
-print("Para realizar lo deseado, necesitas agregar", energia,"Joules. Si esta respuesta tiene signo negativo, significa que se deberá remover energía")
+print("Para realizar lo deseado, necesitas agregar", energia,
+      "Joules. Si esta respuesta tiene signo negativo, significa que se deberá remover energía")
 
 # Segunda fase del programa
 energia = masa_agua * capacidad_calorifica * cambio_temperatura
