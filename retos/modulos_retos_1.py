@@ -250,7 +250,45 @@ def calcular_BMI(peso_lb: float, altura_inch: float) -> float:
     Retorno:
       float: Índice de masa corporal de la persona, el valor de retorno debe estar redondeado a dos decimales.
     """
-    peso = peso_lb / 0.45
-    altura = altura_inch / 0.025
+    peso = peso_lb * 0.45
+    altura = altura_inch * 0.025
     bmi = peso / (altura ** 2)
     return round(bmi, 2)
+
+
+def area_triangulo(s1: float, s2: float, s3: float) -> float:
+    """ Área de un triángulo
+    Parámetros:
+      s1 (float): Longitud de uno de los lados del triángulo
+      s2 (float): Longitud de uno de los lados del triángulo
+      s3 (float): Longitud de uno de los lados del triángulo
+    Retorno:
+      float: El área del triángulo redondeado con una cifra decimal.
+    """
+    s = (s1 + s2 + s3) / 2
+    area = math.sqrt(s * (s - s1) * (s - s2) * (s - s3))
+    return round(area, 1)
+
+
+def vel_en_caida_libre(altura: float) -> float:
+    """ Caída libre
+    Parámetros:
+      altura (float): Altura desde la cual cae el objeto
+    Retorno:
+      float: Velocidad del objeto al tocar el suelo tras la caída libre, la velocidad debe estar redondeada a dos
+             cifras decimales.
+    """
+    vf = math.sqrt(2 * 9.8 * altura)
+    return round(vf, 2)
+
+
+def area_poligono_regular(num_lados: int, longitud: float) -> float:
+    """ Área de un polígono regular
+    Parámetros:
+      num_lados (int): Número de lados del polígono
+      longitud (float): Longitud de uno de los lados del polígono
+    Retorno:
+      float: Área del polígono regular redondeada a dos cifras decimales.
+    """
+    area = (num_lados * longitud ** 2) / (4 * math.tan(math.pi / num_lados))
+    return round(area, 2)
