@@ -211,3 +211,46 @@ def ordenar_enteros(a: int, b: int, c: int) -> str:
     return cadena
 
 
+def centrar_texto(cadena: str, ancho_terminal: int) -> str:
+    """ Centrar texto en la terminal
+    Parámetros:
+      cadena (str): El texto a centrar
+      ancho_terminal (int): El ancho de la terminal, en número de caracteres máximo por línea
+    Retorno:
+      str: El texto dado como parámetro, con el número de espacios necesarios al inicio para verse centrado en
+           la terminal
+    """
+    espacios_start = (ancho_terminal - len(cadena)) / 2
+    return " " * int(espacios_start) + cadena
+
+
+def costo_hervir_agua(masa_agua: float) -> float:
+    """ Costo de hervir agua
+    Parámetros:
+      masa_agua (float): Masa de agua a hervir
+    Retorno:
+      float: Valor en dólares de hervir la masa de agua dada como parámetro redondeado con 4 decimales
+    """
+    # Definimos la capacidad calorífica del material
+    capacidad_calorifica = 4.186
+    # Cálculo de energía
+    energia = masa_agua * capacidad_calorifica * 80
+    # Conversión Joules a Kilowatt
+    energia_kilowatt = energia / 3600000
+    # Cálculo de costo
+    costo = energia_kilowatt * 0.089
+    return round(costo, 4)
+
+
+def calcular_BMI(peso_lb: float, altura_inch: float) -> float:
+    """ Índice de masa corporal
+    Parámetros:
+      peso_lb (float): Peso en libras de la persona
+      altura_inch (float): Altura en pulgadas de la persona
+    Retorno:
+      float: Índice de masa corporal de la persona, el valor de retorno debe estar redondeado a dos decimales.
+    """
+    peso = peso_lb / 0.45
+    altura = altura_inch / 0.025
+    bmi = peso / (altura ** 2)
+    return round(bmi, 2)

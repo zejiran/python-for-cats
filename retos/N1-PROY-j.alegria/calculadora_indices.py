@@ -15,7 +15,7 @@ def calcular_IMC(peso: float, altura: float) -> float:
         float: Índice de masa corporal redondeado a dos decimales.
     """
 
-    imc = peso * (altura ** 2)
+    imc = peso / (altura ** 2)
 
     return imc
 
