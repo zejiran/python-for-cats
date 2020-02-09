@@ -3,6 +3,8 @@
 @author: alxus27
 """
 
+import math
+
 
 def area_habitacion(largo: float, ancho: float) -> float:
     """ Área de una habitación
@@ -91,4 +93,89 @@ def calcular_iva_propina_total_factura(costo_factura: int) -> str:
     total = iva + propina + costo_factura
     cadena = str(round(iva)) + "," + str(round(propina)) + "," + str(round(total))
     return cadena
+
+
+def altura_en_mts(pies: int, pulgadas: int) -> float:
+    """ Altura de una persona
+    Parámetros:
+      pies (int): Número de pies que componen la altura de la persona
+      pulgadas (int): Número de pulgadas que componen la altura de la persona
+    Retorno:
+      float: Altura en metros de la persona, la cual debe estar redondeada a dos cifras decimales.
+    """
+    pulgadas_totales = (pies * 12) + pulgadas
+    centimetros = pulgadas_totales * 2.54
+    metros = round((centimetros / 100), 2)
+    return metros
+
+
+def calcular_pago_botellas(cant_pequenias: int, cant_grandes: int) -> float:
+    """ Reciclaje de botellas plásticas
+    Parámetros:
+      cant_pequenias (int): Cantidad de botellas pequeñas entregadas
+      cant_grandes (int): Cantidad de botellas grandes entregadas
+    Retorno:
+      float: Cantidad de dinero a pagar por las botellas plásticas para reciclaje con dos decimales.
+    """
+    pago_pequenias = cant_pequenias * 0.10
+    pago_grandes = cant_grandes * 0.25
+    dinero_pago = round(pago_grandes + pago_pequenias, 2)
+    return dinero_pago
+
+
+def volumen_cilindro(radio: float, altura: float) -> float:
+    """ Volumen de un cilindro
+    Parámetros:
+      radio (float): Radio de la base del cilindro
+      altura (float): Altura del cilindro
+    Retorno:
+      float: El volumen del cilindro readondeado a un decimal
+    """
+    area_base = math.pi * (radio ** 2)
+    volumen = area_base * altura
+    return round(volumen, 1)
+
+
+def tiempo_a_segundos(dias: int, horas: int, mins: int, seg: int) -> int:
+    """ Unidades de tiempo a segundos
+    Parámetros:
+      dias (int): Número de dias del periodo de tiempo
+      horas (int): Número de horas del periodo de tiempo
+      mins (int): Número de minutos del periodo de tiempo
+      seg (int): Número de segundos del periodo de tiempo
+    Retorno:
+      int: Número de segundos al que equivale el periodo de tiempo dado como parámetro
+    """
+    dias_a_horas = dias * 24
+    horas_a_minutos = (dias_a_horas + horas) * 60
+    minutos_a_segundos = (horas_a_minutos + mins) * 60
+    segundos_totales = minutos_a_segundos + seg
+    return int(segundos_totales)
+
+
+def saludar_repetidas_veces(nombre: str, veces: int) -> str:
+    """ Saludo prolongado
+    Parámetros:
+      nombre (str): Nombre a incluir en el saludo
+      veces (int): Cantidad de veces a repetir las letras
+    Retorno:
+      str: Cadena con el saludo con letras repetidas
+    """
+    saludo = "H" + "o" * veces + "l" + "a" * (int(veces / 2))
+    return saludo + " " + nombre
+
+
+def calcular_tiempo_descarga(velocidad: int, tamanio_archivo: int) -> int:
+    """ Tiempo de descarga
+    Parámetros:
+      velocidad (int): Velocidad de descarga de la red, en Mbps
+      tamanio_archivo (int): Tamaño del archivo a descargar, en GB
+    Retorno:
+      int: Tiempo estimado en minutos que toma la descarga del archivo
+    """
+    megabits_megabyte = velocidad / 8
+    megabyte_gigabyte = megabits_megabyte / 1000
+    tiempo = tamanio_archivo / megabyte_gigabyte
+    segundos_minutos = round(tiempo / 60)
+    return segundos_minutos
 
