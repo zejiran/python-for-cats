@@ -179,3 +179,35 @@ def calcular_tiempo_descarga(velocidad: int, tamanio_archivo: int) -> int:
     segundos_minutos = round(tiempo / 60)
     return segundos_minutos
 
+
+def calcular_total_pan_comprado(frescos: int, viejos: int) -> int:
+    """ Pan del día anterior
+    Parámetros:
+      frescos (int): Cantidad de panes frescos comprados
+      viejos (int): Cantidad de panes del día anterior comprados
+    Retorno:
+      int: Valor total a pagar por el pan comprado
+    """
+    costo_fresco = frescos * 450
+    costo_viejo = viejos * (450 * 0.40)
+    pan_comprado = costo_fresco + costo_viejo
+    return round(pan_comprado)
+
+
+def ordenar_enteros(a: int, b: int, c: int) -> str:
+    """ Ordenar 3 enteros
+    Parámetros:
+      a (int): El primero de los enteros a ordenar
+      b (int): El segundo de los enteros a ordenar
+      c (int): El tercero de los enteros a ordenar
+    Retorno:
+      str: Cadena de caracteres con los enteros ordenados de  mayor a menor, separados por coma
+    """
+    suma = a + b + c
+    mayor = max(a, b, c)
+    menor = min(a, b, c)
+    intermedio = suma - mayor - menor
+    cadena = str(mayor) + "," + str(intermedio) + "," + str(menor)
+    return cadena
+
+

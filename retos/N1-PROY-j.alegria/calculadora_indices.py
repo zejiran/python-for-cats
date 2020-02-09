@@ -87,8 +87,9 @@ def consumo_calorias_recomendado_para_adelgazar(tmb: float) -> str:
         inferior y ZZZ el rango superior.
     """
 
-    adelgazo_inferior = tmb * 0.8
-    adelgazo_superior = tmb * 0.85
-    calorias_adelgazo = ["Para adelgazar es recomendado que consumas entre:", str(round(adelgazo_inferior, 2)), "y", str(round(adelgazo_superior, 2)), "calorías al día."]
+    adelgazo_inferior = (tmb * 0.8, 2)
+    adelgazo_superior = round(tmb * 0.85, 2)
+    calorias_adelgazo = "Para adelgazar es recomendado que consumas entre:" + str(adelgazo_inferior) + "y" + str(
+        adelgazo_superior) + "calorías al día."
 
     return calorias_adelgazo
