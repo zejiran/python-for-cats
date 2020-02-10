@@ -15,7 +15,7 @@ def ejecutar_consumo_calorias_recomendado_para_adelgazar() -> None:
     valor_genero = float(input("Ingrese el valor -161 si es mujer, o 5 en caso de ser hombre: "))
     tmb = calc.calcular_calorias_en_reposo(peso, altura, edad, valor_genero)
     calorias_adelgazo = calc.consumo_calorias_recomendado_para_adelgazar(tmb)
-    print(calorias_adelgazo)
+    print("\n" + calorias_adelgazo)
 
 
 def iniciar_aplicacion() -> None:
