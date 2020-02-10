@@ -16,7 +16,7 @@ def ejecutar_calcular_calorias_en_actividad() -> None:
     tmb = calc.calcular_calorias_en_reposo(peso, altura, edad, valor_genero)
     valor_actividad = float(input("\nDe acuerdo a los siguientes valores digite el valor correspondiente a la "
                                   "persona:\n\n1.2: poco o ningún ejercicio\n1.375: ejercicio ligero (1 a 3 días a la "
-                                  "semana)\n1.55: ejercicio moderado (3 a 5 días a la semana)\n1.72: deportista (6 -7 "
+                                  "semana)\n1.55: ejercicio moderado (3 a 5 días a la semana)\n1.72: deportista (6 a 7 "
                                   "días a la semana)\n1.9: atleta (entrenamientos mañana y tarde)\n\nValor de "
                                   "actividad: "))
     tmbsaf = calc.calcular_calorias_en_actividad(tmb, valor_actividad)
