@@ -17,22 +17,22 @@ def calcular_IMC(peso: float, altura: float) -> float:
 
     imc = peso / (altura ** 2)
 
-    return imc
+    return round(imc, 2)
 
 
 def calcular_porcentaje_grasa(imc: float, edad: int, valor_genero: float) -> float:
     """ Calcula el porcentaje de grasa corporal.
     Parámetros:
         imc (float) Índice de masa corporal redondeado a dos decimales.
-        edad (float) Edad de la persona en años. Número entero positivo.
+        edad (int) Edad de la persona en años. Número entero positivo.
         valor_genero (float) Masculino 10.8. Femenino 0. Decimal
     Retorno:
-        float: Porcentaje de grasa corporal. Número dividido entre 100 al ser un porcentaje.
+        float: Porcentaje de grasa corporal.
     """
 
     pgc = (1.2 * imc) + (0.23 * edad) - 5.4 - valor_genero
 
-    return pgc
+    return round(pgc, 2)
 
 
 def calcular_calorias_en_reposo(peso: float, altura: float, edad: int, valor_genero: float) -> float:
@@ -50,7 +50,7 @@ def calcular_calorias_en_reposo(peso: float, altura: float, edad: int, valor_gen
 
     tmb = (10 * peso) + (6.25 * altura) - (5 * edad) + valor_genero
 
-    return tmb
+    return round(tmb, 2)
 
 
 def calcular_calorias_en_actividad(tmb: float, valor_actividad: float) -> float:
@@ -70,7 +70,7 @@ def calcular_calorias_en_actividad(tmb: float, valor_actividad: float) -> float:
 
     tmbsaf = tmb * valor_actividad
 
-    return tmbsaf
+    return round(tmbsaf, 2)
 
 
 def consumo_calorias_recomendado_para_adelgazar(tmb: float) -> str:
@@ -87,8 +87,8 @@ def consumo_calorias_recomendado_para_adelgazar(tmb: float) -> str:
         inferior y ZZZ el rango superior.
     """
 
-    adelgazo_inferior = (tmb * 0.8, 2)
-    adelgazo_superior = round(tmb * 0.85, 2)
+    adelgazo_inferior = round(tmb * 0.80)
+    adelgazo_superior = round(tmb * 0.85)
     calorias_adelgazo = "Para adelgazar es recomendado que consumas entre:" + str(adelgazo_inferior) + "y" + str(
         adelgazo_superior) + "calorías al día."
 
