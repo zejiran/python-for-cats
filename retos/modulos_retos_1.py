@@ -292,3 +292,174 @@ def area_poligono_regular(num_lados: int, longitud: float) -> float:
     """
     area = (num_lados * longitud ** 2) / (4 * math.tan(math.pi / num_lados))
     return round(area, 2)
+
+
+def caracteres_a_entero(centenas: str, decenas: str, unidades: str) -> int:
+    """ Caracteres a entero
+    Parámetros:
+      centenas (str): Caracter que denota las centenas del número a formar
+      decenas (str): Caracter que denota las decenas del número a formar
+      unidades (str): Caracter que denota las unidades del número a formar
+    Retorno:
+      int: Número entero formado por los caracteres recibidos como parámetro
+    """
+    numero = centenas + decenas + unidades
+    return int(numero)
+
+
+def angulo_entre_agujas_reloj(hora: int, minutos: int) -> float:
+    """ Ángulo entre agujas del reloj
+    Parámetros:
+      hora (int): Hora marcada en el reloj (Valor entre 1 y 12)
+      minutos (int): Minutos marcados en el reloj (Valor entre 0 y 59)
+    Retorno:
+      float: El ángulo entre las agujas del reloj según la hora y minuto dados como parámetro, el cual debe tener
+             un único digito decimal.
+    """
+    horam = hora * 5
+    angulo_hora = horam * 6
+    angulo_hora = angulo_hora + (minutos*0.5)
+    angulo_minuto = minutos * 6
+    mayor = max(angulo_hora, angulo_minuto)
+    menor = min(angulo_hora, angulo_minuto)
+    angulo_entre = mayor - menor
+    angulo_entre = float(round(angulo_entre, 1))
+    return angulo_entre
+
+
+def fecha_a_dias(anio: int, mes: int, dia: int) -> int:
+    """ Convierte una fecha a días, ingresada comop año, mes y día. Se
+    supone que todos los meses tienen 30 días.
+    Parámetros:
+        anio (int) Año de la fecha. Número entero positivo.
+        mes (int) Mes de la fecha. Número entero positivo.
+        dia (int) Día de la fecha. Número entero positivo.
+    Retorno:
+        int: La fecha ingresada convertida a días.
+    """
+    dias = (anio * 360) + (mes * 30) + dia
+    return dias
+
+
+def diferencia_fechas(anio_fecha2: int, mes_fecha2: int, dia_fecha2: int,
+                      anio_fecha1: int, mes_fecha1: int, dia_fecha1: int) -> int:
+    """ Calcula la diferencia en días entre dos fechas cualesquiera fecha1 y
+    fecha2 (expresadas en año, mes y día). Se supone que la fecha2 siempre
+    es superior a la fecha1.
+    Parámetros:
+        anio_fecha2 (int) Año de la fecha2. Número entero positivo.
+        mes_fecha2 (int) Mes de la fecha2. Número entero positivo.
+        dia_fecha2 (int) Día de la fecha2. Número entero positivo.
+        anio_fecha1 (int) Año de la fecha1. Número entero positivo.
+        mes_fecha1 (int) Mes de la fecha1. Número entero positivo.
+        dia_fecha1 (int) Día de la fecha1. Número entero positivo.
+    Retorno:
+        int: Diferencia en días entre las dos fechas.
+    """
+    dias_fecha1 = fecha_a_dias(anio_fecha1, mes_fecha1, dia_fecha1)
+    dias_fecha2 = fecha_a_dias(anio_fecha2, mes_fecha2, dia_fecha2)
+    return dias_fecha2 - dias_fecha1
+
+
+def calcular_edad(dia_nacio: int, mes_nacio: int, anio_nacio: int, dia_actual: int, mes_actual: int,
+                  anio_actual: int) -> str:
+    """ Edad de una persona
+    Parámetros:
+      dia_nacio (int): Dia de nacimiento de la persona
+      mes_nacio (int): Mes de nacimiento de la persona
+      anio_nacio (int): Año de nacimiento de la persona
+      dia_actual (int): Dia de la fecha actual
+      mes_actual (int): Mes de la fecha actual
+      anio_actual (int): Año de la fecha actual
+    Retorno:
+      str: Cadena en que se indica la edad de la persona en años, meses y días
+    """
+    edad_en_dias_totales = diferencia_fechas(anio_actual, mes_actual, dia_actual, anio_nacio, mes_nacio, dia_nacio)
+    anios_cumplidos = edad_en_dias_totales // 360
+    sobrante_de_los_anios = edad_en_dias_totales % 360
+    meses_cumplidos = sobrante_de_los_anios // 30
+    dias_cumplidos = sobrante_de_los_anios % 30
+    return str(anios_cumplidos) + "," + str(meses_cumplidos) + "," + str(dias_cumplidos)
+
+
+def horas_a_minutos(horas: int) -> int:
+    """ Horas a minutos
+    Párametros:
+        horas (int): Horas a convertir enteras
+    Retorno:
+        int: Número de minutos en la hora
+    """
+    minutos = horas * 60
+    return minutos
+
+
+def minutos_a_segundos(minutos: int) -> int:
+    """ Minutos a segundos
+    Párametros:
+        minutos (int): Minutos a convertir
+    Retorno:
+        int: Número de segundos en los minutos
+    """
+    segundos = minutos * 60
+    return segundos
+
+
+def calcular_horario_llegada(hora_salida: int, minuto_salida: int, segundo_salida: int, duracion_horas: int,
+                             duracion_minutos: int, duracion_segundos: int) -> str:
+    """ Hora de llegada de vuelo
+    Parámetros:
+      hora_salida (int): Hora de salida del vuelo (valor entre 0 y 23)
+      minuto_salida (int): Minuto de salida del vuelo (valor entre 0 y 59)
+      segundo_salida (int): Segundo de salida del vuelo (valor entre 0 y 59)
+      duracion_horas (int): Número de horas que dura el vuelo
+      duracion_minutos (int): Número de minutos (adicionales al número de horas) que dura el vuelo
+      duracion_segundos (int): Número de segundos (adicionales al número de horas y minutos) que dura el
+                               vuelo
+    Retorno:
+      str: Cadena que indica la hora de llegada del vuelo a su destino, la cadena debe estar con el formato
+           “HH:mm:ss”.
+    """
+    segundos_totales_salida = minutos_a_segundos(horas_a_minutos(hora_salida)) + minutos_a_segundos(
+        minuto_salida) + segundo_salida
+    duracion_total_segundos = minutos_a_segundos(horas_a_minutos(duracion_horas)) + minutos_a_segundos(duracion_minutos) \
+                              + duracion_segundos
+    segundos_totales_llegada = segundos_totales_salida + duracion_total_segundos
+    hora_llegada = (segundos_totales_llegada // 3600) % 24
+    sobrante = segundos_totales_llegada % 3600
+    minutos_llegada = sobrante // 60
+    sobrante = sobrante % 60
+    segundos_llegada = int(sobrante)
+    return str(hora_llegada) + ":" + str(minutos_llegada) + ":" + str(segundos_llegada)
+
+
+def calcular_distancia_tierra(t1: float, g1: float, t2: float, g2: float) -> float:
+    """ Distancia entre dos puntos en la Tierra
+    Parámetros:
+      t1 (float): Latitud del primer punto en la Tierra
+      g1 (float): Longitud del primero punto en la Tierra
+      t2 (float): Latitud del segundo punto en la Tierra
+      g2 (float): Longitud del segundo punto en la Tierra
+    Retorno:
+      float: Distancia entre dos puntos en la Tierra a dos cifras decimales.
+    """
+    t1 = math.radians(t1)
+    t2 = math.radians(t2)
+    g1 = math.radians(g1)
+    g2 = math.radians(g2)
+    distancia = 6371.01 * math.acos(math.sin(t1) * math.sin(t2) + math.cos(t1) * math.cos(t2) * math.cos(g1 - g2))
+    return round(distancia, 2)
+
+
+def calcular_moles(presion: float, volumen: float, temp_celsius: float) -> float:
+    """ Ley de los gases ideales
+    Parámetros:
+      presion (float): Presión del gas, en Pascales
+      volumen (float): Volumen del gas, en litros
+      temp_celsius (float): Temperatura del gas, en grados centígrados o Celsius
+    Retorno:
+      float: Número de moles del gas con dos cifras decimales.
+    """
+    temp_kelvin = temp_celsius + 273.15
+    volumen = volumen / 1000
+    n = (presion * volumen) / (8.314 * temp_kelvin)
+    return round(n, 2)
