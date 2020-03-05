@@ -225,3 +225,109 @@ def procesamiento_de_digitos(NIT: int) -> int:
     suma_productos = p0 + p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8
     residuo = suma_productos % 11
     return residuo
+
+
+def cambio_de_cartas(carta_mano: dict, opcion_1: dict, opcion_2: dict) -> int:
+    """ Cartas
+    Parámetros:
+      carta_mano (dict): Carta que tiene en la mano. Tiene las llaves "numero" y "palo".
+      opcion_1 (dict): Primera opción de robo. Tiene las llaves "numero" y "palo".
+      opcion_2 (dict): Segunda opción de robo. Tiene las llaves "numero" y "palo".
+    Retorno:
+      int: Número de la carta que será robada para hacer trampa (1 o 2), o 0 si ninguna carta le ayuda.
+    """
+    if carta_mano["numero"] == opcion_2["numero"] or carta_mano["palo"] == opcion_2["palo"]:
+        saca = 2
+        if carta_mano["numero"] == opcion_1["numero"] or carta_mano["palo"] == opcion_1["palo"]:
+            saca = 1
+    elif carta_mano["numero"] == opcion_1["numero"] or carta_mano["palo"] == opcion_1["palo"]:
+        saca = 1
+    else:
+        saca = 0
+    return saca
+
+
+def clasificar_regalo(id: int) -> str:
+    """ Regalo de Santa
+    Parámetros:
+      id (int): El identificador del regalo cuyo tipo de persona se quiere calcular.
+    Retorno:
+      str: Si el número es Palíndromo e impar, el regalo corresponde a una niña, y se retorna "girl" Si el
+           número es Palíndromo y par, el regalo corresponde a un niño, y se retorna "boy" Si el número es par,
+           pero no palíndromo, el regalo corresponde a un hombre, y se retorna "man" Si el número es impar,
+           pero no palíndromo, el regalo corresponde a una mujer, y se retorna "woman"
+    """
+    unidad = id % 10
+    centena = id // 100
+    if unidad == centena:
+        if unidad % 2 == 0:
+            correspondiente = "boy"
+        else:
+            correspondiente = "girl"
+    else:
+        if unidad % 2 == 0:
+            correspondiente = "man"
+        else:
+            correspondiente = "woman"
+    return correspondiente
+
+
+def picas_y_fijas(numero_secreto: int, intento: int) -> dict:
+    """ Picas y Fijas
+    Parámetros:
+      numero_secreto (int): Número el cual se debe adivinar
+      intento (int): Número el cual trata de adivinar
+    Retorno:
+      dict: Diccionario con las llaves "PICAS" y "FIJAS" que describe el resultado de la jugada.
+    """
+    unidad_intento = intento % 10
+    unidad_secreto = numero_secreto % 10
+    intento //= 10
+    numero_secreto //= 10
+    decena_intento = intento % 10
+    decena_secreto = numero_secreto % 10
+    intento //= 10
+    numero_secreto //= 10
+    centena_intento = intento % 10
+    centena_secreto = numero_secreto % 10
+    millar_intento = intento // 10
+    millar_secreto = numero_secreto // 10
+    # Picas
+    picas = 0
+    if unidad_intento == decena_secreto:
+        picas += 1
+    if unidad_intento == centena_secreto:
+        picas += 1
+    if unidad_intento == millar_secreto:
+        picas += 1
+    if decena_intento == unidad_secreto:
+        picas += 1
+    if decena_intento == centena_secreto:
+        picas += 1
+    if decena_intento == millar_secreto:
+        picas += 1
+    if centena_intento == unidad_secreto:
+        picas += 1
+    if centena_intento == decena_secreto:
+        picas += 1
+    if centena_intento == millar_secreto:
+        picas += 1
+    if millar_intento == unidad_secreto:
+        picas += 1
+    if millar_intento == decena_secreto:
+        picas += 1
+    if millar_intento == centena_secreto:
+        picas += 1
+    # Fijas
+    fijas = 0
+    if unidad_intento == unidad_secreto:
+        fijas += 1
+    if decena_intento == decena_secreto:
+        fijas += 1
+    if centena_intento == centena_secreto:
+        fijas += 1
+    if millar_intento == millar_secreto:
+        fijas += 1
+    # Diccionario resultado
+    resultado = {"PICAS": picas, "FIJAS": fijas}
+    return resultado
