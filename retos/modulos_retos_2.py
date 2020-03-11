@@ -331,3 +331,21 @@ def picas_y_fijas(numero_secreto: int, intento: int) -> dict:
     # Diccionario resultado
     resultado = {"PICAS": picas, "FIJAS": fijas}
     return resultado
+
+
+def secuencia_de_fibonacci(fib_1: int, fib_2: int, fib_3: int, fib_4: int) -> str:
+    """ Consecutivos de Fibonacci
+    Parámetros:
+      fib_1 (int): El primer caso base de esta posible secuencia de fibonacci
+      fib_2 (int): El segundo caso base de esta posible secuencia de fibonacci
+      fib_3 (int): El tercer término de esta posible secuencia de fibonacci; no es un caso base.
+      fib_4 (int): El cuarto término de esta posible secuencia de fibonacci; no es un caso base.
+    Retorno:
+      str: Retorna "Fibofacil", si la secuencia corresponde a una secuencia de Fibonacci. De lo contrario,
+           retorna "Fibofalsa"
+    """
+    if fib_3 == (fib_2 + fib_1) and fib_4 == (fib_3 + fib_2):
+        verificar = "Fibofacil"
+    else:
+        verificar = "Fibofalsa"
+    return verificar
