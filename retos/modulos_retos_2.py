@@ -396,10 +396,26 @@ def filtro_ternario(cantidad_autos: int, numero_auto: int) -> int:
            ser un valor entre 1 y 3.
     """
     capacidad_lote = cantidad_autos // 3
-    if 1 < numero_auto <= capacidad_lote:
+    if 1 <= numero_auto <= capacidad_lote:
         lote = 1
-    elif (capacidad_lote + 1) < numero_auto <= (2 * capacidad_lote):
+    elif (capacidad_lote + 1) <= numero_auto <= (2 * capacidad_lote):
         lote = 2
     else:
         lote = 3
     return lote
+
+
+def despacho_buses(personas_bus: int, personas_estacion: int) -> bool:
+    """ La estación de Transmilenio
+    Parámetros:
+      personas_bus (int): Número de personas en el bus que va a detenerse
+      personas_estacion (int): Número de personas esperando el bus en la estación
+    Retorno:
+      bool: Retorna el valor True si se debe despachar un bus nuevo y retorna False de lo contrario.
+    """
+    if personas_bus >= 150 or personas_estacion >= 50:
+        despacho = True
+    else:
+        despacho = False
+    return despacho
+
