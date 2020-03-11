@@ -349,3 +349,57 @@ def secuencia_de_fibonacci(fib_1: int, fib_2: int, fib_3: int, fib_4: int) -> st
     else:
         verificar = "Fibofalsa"
     return verificar
+
+
+def desperdicio_de_gaseosa(amigo_1: dict, amigo_2: dict, amigo_3: dict, capacidad_boton: float) -> str:
+    """ Ida al Cine
+    Parámetros:
+      amigo_1 (dict): Un diccionario con las siguientes llaves: "nombre", el nombre del amigo, (str)
+                      "capacidad_vaso", la capacidad máxima de su vaso, (float) "capacidad_actual", la
+                      capacidad que ha sido llenada de su vaso hasta el momento (float)
+      amigo_2 (dict): Un diccionario con las siguientes llaves: "nombre", el nombre del amigo, (str)
+                      "capacidad_vaso", la capacidad máxima de su vaso, (float) "capacidad_actual", la
+                      capacidad que ha sido llenada de su vaso hasta el momento (float)
+      amigo_3 (dict): Un diccionario con las siguientes llaves: "nombre", el nombre del amigo, (str)
+                      "capacidad_vaso", la capacidad máxima de su vaso, (float) "capacidad_actual", la
+                      capacidad que ha sido llenada de su vaso hasta el momento (float)
+      capacidad_boton (float): La cantidad de gaseosa que se servirá si los amigos deciden oprimir el botón
+                               correspondiente.
+    Retorno:
+      str: El nombre del amigo a quien se le riega primero la gaseosa, suponiendo un orden ascendente en cuanto
+           a que amigo llena primero su vaso. (Es decir, primero llena el amigo_1, luego el 2, luego el 3) Si a
+           ningun amigo se le riega la gaseosa, retorne None. Si a más de un amigo se le riega la gaseosa,
+           retorna el primero.
+    """
+    cap_restante1 = amigo_1["capacidad_vaso"] - amigo_1["capacidad_actual"]
+    cap_restante2 = amigo_2["capacidad_vaso"] - amigo_2["capacidad_actual"]
+    cap_restante3 = amigo_3["capacidad_vaso"] - amigo_3["capacidad_actual"]
+    if cap_restante1 < capacidad_boton:
+        riega = amigo_1["nombre"]
+    elif cap_restante2 < capacidad_boton:
+        riega = amigo_2["nombre"]
+    elif cap_restante3 < capacidad_boton:
+        riega = amigo_3["nombre"]
+    else:
+        riega = None
+    return riega
+
+
+def filtro_ternario(cantidad_autos: int, numero_auto: int) -> int:
+    """ Filtro ternario
+    Parámetros:
+      cantidad_autos (int): La cantidad de carros que recibe el operario en su parqueadero
+      numero_auto (int): El número único del carro a ubicar en alguno de los tres lotes de parqueo. Se
+                         garantiza que es un número menor o igual que n, y mayor o igual que 1.
+    Retorno:
+      int: El lote de parqueadero donde el carro con el número que llega por parámetro deberá parquear. Debe
+           ser un valor entre 1 y 3.
+    """
+    capacidad_lote = cantidad_autos // 3
+    if 1 < numero_auto <= capacidad_lote:
+        lote = 1
+    elif (capacidad_lote + 1) < numero_auto <= (2 * capacidad_lote):
+        lote = 2
+    else:
+        lote = 3
+    return lote
