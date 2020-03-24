@@ -3,6 +3,8 @@
 @author: alxus27
 """
 
+import math
+
 
 def movimiento_robot(orientacion_actual: str, giro_1: str, giro_2: str, giro_3: str) -> str:
     """ Movimiento robótico - V2
@@ -418,4 +420,98 @@ def despacho_buses(personas_bus: int, personas_estacion: int) -> bool:
     else:
         despacho = False
     return despacho
+
+
+def es_divisible(n: int, d: int) -> int:
+    """ Modularidad
+    Parámetros:
+      n (int): un número entero
+      d (int): un número entero
+    Retorno:
+      int: Si el número n es divisible por 2d, retorna 2. Si el número n es divisible entre d pero no entre 2d,
+           retorna 1. De lo contrario, retorna 0.
+    """
+    if d == 0:
+        modularidad = 0
+    elif n % (2 * d) == 0:
+        modularidad = 2
+    elif n % d == 0:
+        modularidad = 1
+    else:
+        modularidad = 0
+    return modularidad
+
+
+def bisiesto(anio: int) -> bool:
+    """ Año Bisiesto
+    Parámetros:
+      anio (int): Año para analizar si es bisiesto o no
+    Retorno:
+      bool: Valor de verdad (bool) que indica si el año es bisiesto (True) o no lo es (False).
+    """
+    if anio % 400 != 0 and anio % 100 == 0:
+        es_o_no_es = False
+    elif anio % 4 == 0:
+        es_o_no_es = True
+    else:
+        es_o_no_es = False
+    return es_o_no_es
+
+
+def conteo_buenas_notas(notas: dict) -> int:
+    """ Materias Excepcionales
+    Parámetros:
+      notas (dict): Diccionario con las notas del estudiante
+    Retorno:
+      int: Número de materias excepcionales
+    """
+    excepcionales = 0
+    if notas["Matematica"] > 4:
+        excepcionales += 1
+    if notas["Ingles"] > 4:
+        excepcionales += 1
+    if notas["Sociales"] > 4:
+        excepcionales += 1
+    if notas["Ciencias"] > 4:
+        excepcionales += 1
+    if notas["Deportes"] > 4:
+        excepcionales += 1
+    return excepcionales
+
+
+def conteo_de_materias(nombre_materia_1: str, nombre_materia_2: str, nombre_materia_3: str) -> int:
+    """ Materias favoritas
+    Parámetros:
+      nombre_materia_1 (str): El nombre de la primera de las tres materias
+      nombre_materia_2 (str): El nombre de la segunda materia
+      nombre_materia_3 (str): El nombre de la tercera materia
+    Retorno:
+      int: Retorna el número de materias que cumplen con ser del agrado de Pedro.
+    programación, matemática, filosofía, literatura
+    """
+    favoritas = 0
+    if "programacion" in nombre_materia_1 or "matematica" in nombre_materia_1 or "filosofia" in nombre_materia_1 or "literatura" in nombre_materia_1:
+        favoritas += 1
+    if "programacion" in nombre_materia_2 or "matematica" in nombre_materia_2 or "filosofia" in nombre_materia_2 or "literatura" in nombre_materia_2:
+        favoritas += 1
+    if "programacion" in nombre_materia_3 or "matematica" in nombre_materia_3 or "filosofia" in nombre_materia_3 or "literatura" in nombre_materia_3:
+        favoritas += 1
+    return favoritas
+
+
+def potenciador(x: float, n: float) -> bool:
+    """ Potenciador
+    Parámetros:
+      x (float): Número sospechoso como posible número elevado del número misterioso
+      n (float): Potencia a la la cual se debe elevar el número misterioso
+    Retorno:
+      bool: Bool que indica si existe un número que elevado a la n, da como resultado x.
+    """
+    boolpow = False
+    if n == 1 or n <= 0:
+        boolpow = False
+    elif (x ** (1 / n)) % 1 == 0:
+        boolpow = True
+    return boolpow
+
 
