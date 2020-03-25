@@ -215,6 +215,7 @@ def verificar_nit(NIT: int, digito: int) -> bool:
 
 def procesamiento_de_digitos(NIT: int) -> int:
     cadena = str(NIT)
+    productos = [41, 37, 29, 23, 19, 17, 13, 7, 3]
     p0 = int(cadena[0]) * 41
     p1 = int(cadena[1]) * 37
     p2 = int(cadena[2]) * 29
@@ -515,3 +516,97 @@ def potenciador(x: float, n: float) -> bool:
     return boolpow
 
 
+def calcular_precio_pasaje(temporada: str, compania: str, edad: int, estudiante: bool) -> int:
+    """ Precio de un Pasaje
+    Parámetros:
+      temporada (str): Cadena que indica la temporada, puede ser "ALTA" o "BAJA"
+      compania (str): Cadena que indica la compañía con la que se hace el vuelo, puede ser "ALAS" o "VOLAR"
+      edad (int): Edad del pasajero
+      estudiante (bool): True en caso que el pasajero sea estudiante, False de lo Contrario
+    Retorno:
+      int: Precio calculado del pasaje Bogotá-Tokio según los parámetros
+    """
+    incremento = 0
+    base = 5000000
+    if temporada == "ALTA":
+        if compania == "ALAS":
+            incremento += base * 0.3
+        else:
+            incremento += base * 0.2
+    if edad < 18:
+        incremento -= base * 0.5
+    elif estudiante and temporada == "BAJA" and compania == "ALAS":
+        incremento -= base * 0.1
+    elif edad > 60 and compania == "VOLAR":
+        incremento += 100000
+    precio = base + incremento
+    return precio
+
+
+def calcular_costo_boletas(cantidad_boletas: int, tipo_sala: str, hora_pico: bool, pago_tarjeta_cinema: bool, reserva: bool) -> int:
+    """ Boletas de Cine
+    Parámetros:
+      cantidad_boletas (int): La cantidad de boletas que se van a comprar
+      tipo_sala (str): El tipo de sala en que se proyecta la película. Puede ser '2D', '3D' o 'Dinamix'
+      hora_pico (bool): Indica si el horario en que se proyecta la película es una hora pico o no
+      pago_tarjeta_cinema (bool): Indica si el pago de las boletas se hará con la tarjeta del cinema
+      reserva (bool): Indica si se van a reservar las boletas antes de comprarlas
+    Retorno:
+      int: El costo total de las boletas, redondeado al número entero más cercano.
+    """
+    # Costo inicial.
+    costo = 0
+    # Tipo de sala.
+    if tipo_sala == "Dinamix":
+        costo_base = 18800
+    elif tipo_sala == "2D":
+        costo_base = 11300
+    else:
+        costo_base = 15500
+    costo += costo_base
+    # Horas no congestionadas.
+    if not hora_pico:
+        costo -= costo_base * 0.10
+    # 3 o más.
+    if cantidad_boletas >= 3 and not hora_pico:
+        costo -= 500
+    # Tarjeta cinema.
+    if pago_tarjeta_cinema:
+        costo -= costo_base * 0.05
+    # Reserva.
+    if reserva:
+        costo += 2000
+    # Hora pico.
+    if hora_pico:
+        if tipo_sala == "2D" or tipo_sala == "3D":
+            costo += costo_base * 0.25
+        else:
+            costo += costo_base * 0.50
+    costo = int(costo * cantidad_boletas)
+    return costo
+
+
+def entero_minimo_while(l: int, r: int, d: int) -> int:
+
+    x = r + 1 if 1 >= l else 1
+    print(x)
+    while x <= l or x > r:
+        if x % d == 0:
+            return x
+        if x == l:
+            x = x + (r - l)
+        x = x + 1
+
+
+def calcular(l: int, r: int, d: int, x: int) -> int:
+    print(l, r, d, x)
+    if ((l > x >= 0) or (x >= 0 and x > r)) and x % d == 0:
+        print(x)
+        return x
+    if x < l or x > r:
+        return calcular(l, r, d, x + 1)
+    if x == l:
+        return calcular(l, r, d, x + (r - l) + 1)
+
+
+def entero_minimo(l: int, r: int, d: int) -> int: return d if d < l else d * (r // d + 1)
