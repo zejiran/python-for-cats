@@ -8,7 +8,7 @@ def crear_amigo(nombre: str, anio_conocimiento: int, pareja: bool, presupuesto_s
                 adicional_semanal: float, licor_tomado: int, vegano: bool, carro: bool, salidas_semanales: int) -> dict:
     amigo = {"nombre": nombre, "anio conocimiento": anio_conocimiento, "pareja": pareja,
              "presupuesto semanal": presupuesto_semanal, "adicional semana": adicional_semanal,
-             "licor tomado": licor_tomado, "vegano": vegano, carro: "carro", "salidas semanales": salidas_semanales}
+             "licor tomado": licor_tomado, "vegano": vegano, "carro": carro, "salidas semanales": salidas_semanales}
     return amigo
 
 
@@ -40,10 +40,25 @@ def conocido(amigo: dict, anio_actual: int) -> bool:
         es_conocido = False
     return es_conocido
 
-def calcular_ahorro(gastos: float, amigo: dict) -> float:
-    ahorro = amigo["presupuesto_semanal"] + amigo["adicional_semana"] - gastos
+
+def calcular_ahorro(amigo: dict, gastos) -> float:
+    ahorro = amigo["presupuesto semanal"] + amigo["adicional semana"] - gastos
     return ahorro
 
-def diccionario_final(amigo: dict, ahorro: float) -> dict:
-    diccionario = {"amigo": amigo["nombre"], "gastos": gastos}
-    return diccionario
+
+def diccionario_final(a1: dict, a2: dict, a3: dict, a4: dict) -> dict:
+    final = {}
+    amigo_valido(a1, final)
+    amigo_valido(a2, final)
+    amigo_valido(a3, final)
+    amigo_valido(a4, final)
+    return final
+
+
+def amigo_valido(amigo: dict, final: dict) -> None:
+    gastos = calcular_gastos_semanales(amigo)
+    es_conocido = conocido(amigo, 2020)
+    ahorro = calcular_ahorro(amigo, gastos)
+    if es_conocido and ahorro >= 45000:
+        final[amigo["nombre"]] = ahorro
+

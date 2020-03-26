@@ -4,14 +4,14 @@
 """
 
 
-def crear_libro(nom: str, cod: str,autor: int, adp: int, cant: int, pdv: float, cpu: float) -> dict:
-    dic_libro = { "nombre": nom, 
-                       "codigo": cod,  
-                       "autor": autor, 
-                       "añoPublicacion": adp,
-                       "cantidad": cant,
-                       "precio": pdv, 
-                       "costoProduccion": cpu}
+def crear_libro(nom: str, cod: str, autor: int, adp: int, cant: int, pdv: float, cpu: float) -> dict:
+    dic_libro = {"nombre": nom,
+                 "codigo": cod,
+                 "autor": autor,
+                 "añoPublicacion": adp,
+                 "cantidad": cant,
+                 "precio": pdv,
+                 "costoProduccion": cpu}
     return dic_libro
 
 
@@ -34,22 +34,22 @@ def mayor_ganancia(libro1: dict, libro2: dict, libro3: dict, libro4: dict) -> di
 
 def hacer_pedido(nom_lib: str, libro1: dict, libro2: dict, libro3: dict, libro4: dict) -> bool:
     if nom_lib == libro1["nombre"]:
-        if libro1["cantidad"] <= 50 and libro1["cantidad"] > 100:
+        if 50 >= libro1["cantidad"] > 100:
             pedido_verificado = True
         else:
             pedido_verificado = False
-    elif nomb_lib == libro2["nombre"]:
-        if libro2["cantidad"] <= 50 and libro2["cantidad"] > 100:
+    elif nom_lib == libro2["nombre"]:
+        if 50 >= libro2["cantidad"] > 100:
             pedido_verificado = True
         else:
             pedido_verificado = False
-    elif nomb_lib == libro3["nombre"]:
-        if libro3["cantidad"] <= 50 and libro3["cantidad"] > 100:
+    elif nom_lib == libro3["nombre"]:
+        if 50 >= libro3["cantidad"] > 100:
             pedido_verificado = True
         else:
             pedido_verificado = False
-    elif nomb_lib == libro4["nombre"]:
-        if libro4["cantidad"] <= 50 and libro4["cantidad"] > 100:
+    elif nom_lib == libro4["nombre"]:
+        if 50 >= libro4["cantidad"] > 100:
             pedido_verificado = True
         else:
             pedido_verificado = False
@@ -62,30 +62,31 @@ def publicacion_antes_anio(anio: int, libro1: dict, libro2: dict, libro3: dict, 
     libros_antes_anio = {}
     if anio > libro1["añoPublicacion"]:
         libros_antes_anio[libro1["nombre"]] = libro1["añoPublicacion"]
-    if anio > libro1["añoPublicacion"]:
-        libros_antes_anio[libro1["nombre"]] = libro1["añoPublicacion"]
-    if anio > libro1["añoPublicacion"]:
-        libros_antes_anio[libro1["nombre"]] = libro1["añoPublicacion"]
-    if anio > libro1["añoPublicacion"]:
-        libros_antes_anio[libro1["nombre"]] = libro1["añoPublicacion"]
+    if anio > libro2["añoPublicacion"]:
+        libros_antes_anio[libro2["nombre"]] = libro2["añoPublicacion"]
+    if anio > libro3["añoPublicacion"]:
+        libros_antes_anio[libro3["nombre"]] = libro3["añoPublicacion"]
+    if anio > libro4["añoPublicacion"]:
+        libros_antes_anio[libro4["nombre"]] = libro4["añoPublicacion"]
     # if libros_antes_anio == {}:
-        #return "No hay libros antes del año seleccionado"
+    # return "No hay libros antes del año seleccionado"
     return libros_antes_anio
 
 
-def ganancias_venta_libro(nom_lib: str, cant_vender: int, libro1: dict, libro2: dict, libro3: dict, libro4: dict) -> dict:
+def ganancias_venta_libro(nom_lib: str, cant_vender: int, libro1: dict, libro2: dict, libro3: dict,
+                          libro4: dict) -> dict:
     if nom_lib == libro1["nombre"]:
         ganancia = cant_vender * (libro1["precio"] - libro1["costoProduccion"])
     elif nom_lib == libro2["nombre"]:
-       ganancia = cant_vender * (libro2["precio"] - libro2["costoProduccion"])
+        ganancia = cant_vender * (libro2["precio"] - libro2["costoProduccion"])
     elif nom_lib == libro3["nombre"]:
-       ganancia = cant_vender * (libro3["precio"] - libro3["costoProduccion"])
+        ganancia = cant_vender * (libro3["precio"] - libro3["costoProduccion"])
     elif nom_lib == libro4["nombre"]:
         ganancia = cant_vender * (libro4["precio"] - libro4["costoProduccion"])
     else:
         ganancia = 0
     # else:
-        # return "No tenemos ese libro"
+    # return "No tenemos ese libro"
     return {"nombre": nom_lib, "ganancias": ganancia}
 
 
@@ -100,36 +101,36 @@ def venta_por_mayor(nom_lib: str, cant_vender: int, libro1: dict, libro2: dict, 
         elif cant_vender > (0.75 * libro1["cantidad"]):
             descuento = 0.3 * ganancia
     elif nom_lib == libro2["nombre"]:
-       ganancia = cant_vender * (libro2["precio"] - libro2["costoProduccion"])
-       if cant_vender > (0.25 * libro2["cantidad"]) and cant_vender < (0.5 * libro2["cantidad"]):
+        ganancia = cant_vender * (libro2["precio"] - libro2["costoProduccion"])
+        if (0.25 * libro2["cantidad"]) < cant_vender < (0.5 * libro2["cantidad"]):
             descuento = 0.1 * ganancia
-       elif cant_vender > (0.5 * libro2["cantidad"]) and cant_vender < (0.75 * libro2["cantidad"]):
+        elif (0.5 * libro2["cantidad"]) < cant_vender < (0.75 * libro2["cantidad"]):
             descuento = 0.2 * ganancia
-       elif cant_vender > (0.75 * libro2["cantidad"]):
+        elif cant_vender > (0.75 * libro2["cantidad"]):
             descuento = 0.3 * ganancia
     elif nom_lib == libro3["nombre"]:
-       ganancia = cant_vender * (libro3["precio"] - libro3["costoProduccion"])
-       if cant_vender > (0.25 * libro3["cantidad"]) and cant_vender < (0.5 * libro3["cantidad"]):
+        ganancia = cant_vender * (libro3["precio"] - libro3["costoProduccion"])
+        if (0.25 * libro3["cantidad"]) < cant_vender < (0.5 * libro3["cantidad"]):
             descuento = 0.1 * ganancia
-        elif cant_vender > (0.5 * libro3["cantidad"]) and cant_vender < (0.75 * libro3["cantidad"]):
+        elif (0.5 * libro3["cantidad"]) < cant_vender < (0.75 * libro3["cantidad"]):
             descuento = 0.2 * ganancia
         elif cant_vender > (0.75 * libro3["cantidad"]):
             descuento = 0.3 * ganancia
     elif nom_lib == libro4["nombre"]:
         ganancia = cant_vender * (libro4["precio"] - libro4["costoProduccion"])
-        if cant_vender > (0.25 * libro4["cantidad"]) and cant_vender < (0.5 * libro4["cantidad"]):
+        if (0.25 * libro4["cantidad"]) < cant_vender < (0.5 * libro4["cantidad"]):
             descuento = 0.1 * ganancia
-        elif cant_vender > (0.5 * libro4["cantidad"]) and cant_vender < (0.75 * libro4["cantidad"]):
+        elif (0.5 * libro4["cantidad"]) < cant_vender < (0.75 * libro4["cantidad"]):
             descuento = 0.2 * ganancia
         elif cant_vender > (0.75 * libro4["cantidad"]):
             descuento = 0.3 * ganancia
     # else:
-        # return "No tenemos ese libro"
+    # return "No tenemos ese libro"
     return venta_por_mayor
-    
 
-#PROGRAMA PRINCIPAL
-libro1 = crear_libro("Harry Potter y la piedra filosofal", "HPJK1997", "J.K. Rowling", 1997, 200 , 25000, 9000)
-libro2 = crear_libro("Los Juegos del Hambre", "JHSC2008", "Suzanne Collins", 2008, 100 , 27000, 12000)
-libro3 = crear_libro("El Hobbit", "EHJR1937", "J.R.R tolkien",1937, 50 , 35000, 15000)
-libro4 = crear_libro("Hamlet", "HWS1589", "William Shakespeare", 1589, 20 , 26000, 13000)
+
+# PROGRAMA PRINCIPAL
+libro1 = crear_libro("Harry Potter y la piedra filosofal", "HPJK1997", "J.K. Rowling", 1997, 200, 25000, 9000)
+libro2 = crear_libro("Los Juegos del Hambre", "JHSC2008", "Suzanne Collins", 2008, 100, 27000, 12000)
+libro3 = crear_libro("El Hobbit", "EHJR1937", "J.R.R tolkien", 1937, 50, 35000, 15000)
+libro4 = crear_libro("Hamlet", "HWS1589", "William Shakespeare", 1589, 20, 26000, 13000)
