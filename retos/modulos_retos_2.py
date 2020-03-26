@@ -610,3 +610,40 @@ def calcular(l: int, r: int, d: int, x: int) -> int:
 
 
 def entero_minimo(l: int, r: int, d: int) -> int: return d if d < l else d * (r // d + 1)
+
+
+def suficientes_uvas(cantidad_ivan: int, cantidad_nicolas: int, cantidad_adriana: int, cantidad_verde: int, cantidad_morada: int, cantidad_negra: int) -> str:
+    """ ¿Suficientes Uvas?
+    Parámetros:
+      cantidad_ivan (int): La cantidad de uvas que Iván desea comer
+      cantidad_nicolas (int): La cantidad de uvas que Nicolás desea comer
+      cantidad_adriana (int): La cantidad de uvas que Adriana desea comer
+      cantidad_verde (int): La cantidad de uvas verdes de las que disponen los amigos
+      cantidad_morada (int): La cantidad de uvas moradas de las que disponen los amigos
+      cantidad_negra (int): La cantidad de uvas negras de las que disponen los amigos
+    Retorno:
+      str: La función retorna "felices", si todos los amigos pueden comer la cantidad de uvas que quieren;
+           "casi", si dos de los 3 amigos pueden comer la cantidad de uvas que quieren; "fallamos", si
+           solamente 1 amigo puede comer la cantidad de uvas que quiere; "al menos somos amigos", si ninguno de
+           los amigos puede comer la cantidad de uvas que quiere.
+    """
+    bien_comidos = 0
+    if cantidad_ivan <= cantidad_verde and ((cantidad_ivan <= (cantidad_nicolas + cantidad_adriana)) or ((cantidad_negra + cantidad_morada) >= (cantidad_nicolas + cantidad_adriana))):
+        bien_comidos += 1
+        cantidad_verde -= cantidad_ivan
+    cantidad_v_y_m = cantidad_verde + cantidad_morada
+    if cantidad_nicolas <= cantidad_v_y_m:
+        bien_comidos += 1
+        cantidad_v_y_m -= cantidad_nicolas
+    cantidad_total = cantidad_v_y_m + cantidad_negra
+    if cantidad_adriana <= cantidad_total:
+        bien_comidos += 1
+    # Amigos.
+    if bien_comidos == 3:
+        return "felices"
+    elif bien_comidos == 2:
+        return "casi"
+    elif bien_comidos == 1:
+        return "fallamos"
+    else:
+        return "al menos somos amigos"
