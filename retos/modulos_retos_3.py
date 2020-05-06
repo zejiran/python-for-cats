@@ -343,3 +343,43 @@ def vuelos_a_destino(vuelos: dict, origen: str, destino: str) -> list:
                 if vuelos[codigoX]['origen'] == vuelos[codigoY]['destino']:
                     lista.append([codigoY, codigoX])
     return lista
+
+
+def aeropuerto_mas_visitado(vuelos: dict) -> str:
+    aero_mas_visitado = None
+    mas_visitas = 0
+    conteo_visitas = {}
+    for cada_vuelo in vuelos:
+        origen = vuelos[cada_vuelo]['origen']
+        destino = vuelos[cada_vuelo]['destino']
+        veces_origen = conteo_visitas.get(origen, 0)
+        veces_destino = conteo_visitas.get(destino, 0)
+        conteo_visitas[destino] = veces_destino + 1
+        conteo_visitas[origen] = veces_origen + 1
+        if conteo_visitas[destino] > mas_visitas:
+            mas_visitas = conteo_visitas[destino]
+            aero_mas_visitado = destino
+        if conteo_visitas[origen] > mas_visitas:
+            mas_visitas = conteo_visitas[origen]
+            aero_mas_visitado = origen
+    return aero_mas_visitado
+
+
+def vuelos_tarde(vuelos: dict) -> None:
+    # Retorna codigo-vuelo, origen, destino, y hora salida de vuelos por la tarde
+    codigos_tarde = list()
+    reporte = open("reporte.txt", "w")
+    # Se añaden a una lista los códigos de vuelos por la tarde
+    for cada_vuelo in vuelos:
+        if vuelos[cada_vuelo]['salida'] > 1200:
+            codigos_tarde.append(cada_vuelo)
+    # Se escribe el reporte a partir de la lista
+    reporte.write("Vuelos de la tarde\n")
+    reporte.write("----------------------------------------\n")
+    for cada_codigo in codigos_tarde:
+        reporte.write("Código de vuelo: " + vuelos[cada_codigo])
+        reporte.write("Origen de vuelo: " + vuelos[cada_codigo]['origen'])
+        reporte.write("Destino de vuelo: " + vuelos[cada_codigo]['destino'])
+        reporte.write("Hora de salida: " + str(vuelos[cada_codigo]['salida']))
+    reporte.write("----------------------------------------\n")
+    reporte.close()

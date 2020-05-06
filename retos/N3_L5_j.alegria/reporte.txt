@@ -1,0 +1,95 @@
+Cantidad de vehículos por marca en el departamento Valle del Cauca
+----------------------------------
+Chevrolet: 7836
+Renault: 5702
+Ayco: 73
+Audi: 128
+Hino: 151
+Foton: 224
+Nissan: 2344
+Kia: 5444
+Dfsk: 79
+Bajaj: 10981
+Mitsubishi: 49
+Volkswagen: 403
+Yamaha: 11178
+International: 8
+Mazda: 2349
+Subaru: 159
+Hero: 6357
+Honda: 13169
+Kymco: 5473
+Haojue: 7
+Tvs: 2587
+Toyota: 560
+Suzuki: 7110
+Akt: 8672
+Chery: 118
+Changan: 381
+Mercedes benz: 227
+Royal enfield: 55
+Hyundai: 503
+Bmw: 286
+Jac: 422
+West: 60
+Vespa: 1
+Ktm: 111
+Keeway: 665
+Benelli: 6
+Great wall: 17
+Mitsubishi fuso: 19
+Ford: 1960
+Kenworth: 8
+Zaga: 38
+Porsche: 5
+Volvo: 40
+Moto abc: 50
+Triumph: 8
+Sym: 330
+Mini: 29
+Jeep: 40
+Victory: 1437
+Dong feng: 15
+Sigma: 201
+Tongko: 347
+Jialing: 147
+Faw: 15
+Ssangyong: 19
+Piaggio: 50
+Baic: 9
+Peugeot: 18
+Dodge: 147
+Kawasaki: 208
+Citroen: 13
+Shineray: 7
+Ducati: 2
+Polaris: 9
+Yutong: 2
+Agrale: 10
+Brp/can am: 19
+Mack: 1
+Changhe: 6
+Yuejin - naveco: 6
+Jmc: 3
+Mv agusta: 1
+Um: 41
+Qijing: 1
+Energy motion: 2
+Renli: 1
+No registra: 3
+Stärker: 33
+Natsuki: 2
+Skoda: 1
+Scomadi: 4
+Harley davidson: 2
+Scania: 1
+Jec: 1
+Land rover: 2
+Elektromotores: 2
+Starker: 98
+Husqvarna: 1
+Gvmco: 2
+Sunra: 4
+Sport power new/electrika: 1
+Dayun: 2
+----------------------------------
