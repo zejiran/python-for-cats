@@ -9,10 +9,11 @@ Temas:
 * Diccionarios
 * Archivos
 
-@author: Cupi2
+@author: zejiran
 """
 
-#import olimpicos as olim
+import olimpicos as olim
+
 
 def ejecutar_cargar_atletas() -> list:
     """Solicita al usuario que ingrese el nombre de un archivo CSV con los datos de
@@ -29,6 +30,7 @@ def ejecutar_cargar_atletas() -> list:
         print("Se cargaron", len(atletas), "atletas a partir del archivo.")
     return atletas
 
+
 def ejecutar_atletas_por_anio(atletas: list) -> None:
     """ Ejecuta la opción de buscar los atletas de un año dado
     """
@@ -37,6 +39,7 @@ def ejecutar_atletas_por_anio(atletas: list) -> None:
     
     #TODO: complete el código haciendo el llamado a la función del módulo que
     #implementa este requerimiento e imprimiendo por pantalla el resultado
+
 
 def ejecutar_medallas_en_rango(atletas: list) -> None:
     """ Ejecuta la opción de buscar las medallas de un atleta
@@ -50,6 +53,7 @@ def ejecutar_medallas_en_rango(atletas: list) -> None:
     #TODO: complete el código haciendo el llamado a la función del módulo que
     #implementa este requerimiento e imprimiendo por pantalla el resultado
 
+
 def ejecutar_atletas_por_pais(atletas: list) -> None:
     """ Ejecuta la opción de buscar los atletas de un país específico
     """
@@ -59,12 +63,14 @@ def ejecutar_atletas_por_pais(atletas: list) -> None:
     #TODO: complete el código haciendo el llamado a la función del módulo que
     #implementa este requerimiento e imprimiendo por pantalla el resultado
 
+
 def ejecutar_pais_con_mas_atletas(atletas: list) -> None:
     """ Ejecuta la opción de buscar el país con más atletas
     """
     
     #TODO: complete el código haciendo el llamado a la función del módulo que
     #implementa este requerimiento e imprimiendo por pantalla el resultado
+
 
 def ejecutar_medallistas_por_evento(atletas: list) -> None:
     """ Ejecuta la opción de buscar los medallistas de un evento dado
@@ -74,6 +80,7 @@ def ejecutar_medallistas_por_evento(atletas: list) -> None:
     
     #TODO: complete el código haciendo el llamado a la función del módulo que
     #implementa este requerimiento e imprimiendo por pantalla el resultado
+
 
 def ejecutar_atletas_con_mas_medallas_que(atletas: list) -> None:
     """ Ejecuta la opción de buscar los atletas que han obtenido 
@@ -85,6 +92,7 @@ def ejecutar_atletas_con_mas_medallas_que(atletas: list) -> None:
     #TODO: complete el código haciendo el llamado a la función del módulo que
     #implementa este requerimiento e imprimiendo por pantalla el resultado)
 
+
 def ejecutar_atleta_estrella(atletas: list) -> None:
     """ Ejecuta la opción de buscar el atleta con
     más medallas de todos los tiempos
@@ -92,7 +100,8 @@ def ejecutar_atleta_estrella(atletas: list) -> None:
     
     #TODO: complete el código haciendo el llamado a la función del módulo que
     #implementa este requerimiento e imprimiendo por pantalla el resultado
-    
+
+
 def ejecutar_mejor_pais_en_un_evento(atletas: list) -> None:
     """ Ejecuta la opción de buscar el país con mejor
     desempeño en un evento en específico
@@ -102,7 +111,8 @@ def ejecutar_mejor_pais_en_un_evento(atletas: list) -> None:
     
     #TODO: complete el código haciendo el llamado a la función del módulo que
     #implementa este requerimiento e imprimiendo por pantalla el resultado
-    
+
+
 def ejecutar_todoterreno(atletas: list) -> None:
     """ Ejecuta la opción de buscar el atleta más todoterreno
     de todos los tiempos
@@ -110,7 +120,8 @@ def ejecutar_todoterreno(atletas: list) -> None:
     
     #TODO: complete el código haciendo el llamado a la función del módulo que
     #implementa este requerimiento e imprimiendo por pantalla el resultado
-    
+
+
 def ejecutar_medallistas_por_nacion_y_genero(atletas: list) -> None:
     """ Ejecuta la opción de buscar los medallistas de un país
     y género específicos
@@ -121,6 +132,7 @@ def ejecutar_medallistas_por_nacion_y_genero(atletas: list) -> None:
     
     #TODO: complete el código haciendo el llamado a la función del módulo que
     #implementa este requerimiento e imprimiendo por pantalla el resultado
+
 
 def ejecutar_porcentaje_medallistas(atletas: list) -> None:
     """ Ejecuta la opción de calcular el porcentaje de medallistas 
@@ -147,7 +159,8 @@ def mostrar_menu():
     print("11. Consultar los medallistas por nación y género")
     print("12. Consultar el porcentaje de atletas que son medallistas")
     print("13. Salir de la aplicación")
-	
+
+
 def iniciar_aplicacion():
     """Ejecuta el programa para el usuario."""
     continuar = True
@@ -184,5 +197,6 @@ def iniciar_aplicacion():
         else:
             print("Por favor seleccione una opción válida.")
 
-#PROGRAMA PRINCIPAL
+
+# PROGRAMA PRINCIPAL
 iniciar_aplicacion()
