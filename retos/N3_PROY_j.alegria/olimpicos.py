@@ -27,7 +27,7 @@ def cargar_atletas(nombre_archivo: str) -> list:
     # Agregar datos a la lista.
     linea = archivo.readline()
     while len(linea) > 0:
-        datos = linea.split(";")
+        datos = linea.split(",")
         # Creación de diccionario de atleta individual
         atleta = {'nombre': datos[0], 'genero': datos[1], 'edad': datos[2],
                   'pais': datos[3], 'anio': datos[4], 'evento': datos[5],
