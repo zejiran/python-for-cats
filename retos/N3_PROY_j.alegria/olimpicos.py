@@ -57,11 +57,11 @@ def obtener_atletas_de_anio(atletas: list, anio_interes: int) -> dict:
                                               'eventoi': [nombre0, ..., nombrei]}.
     """
     # Inicializar diccionario de retorno.
-    nombres_anio = dict()
+    nombres_anio = {}
     # Inicio de reccorido por la lista de atletas.
     for cada_atleta in atletas:
         # Verificar atletas del año de interés.
-        if anio_interes == cada_atleta['anio']:
+        if anio_interes == int(cada_atleta['anio']):
             # Verificar si el evento deportivo ya estaba agregado al diccionario de retorno.
             evento = nombres_anio.get(cada_atleta['evento'], "")
             if evento == "":
@@ -69,7 +69,7 @@ def obtener_atletas_de_anio(atletas: list, anio_interes: int) -> dict:
                 nombres_anio[cada_atleta['evento']] = [cada_atleta['nombre']]
             else:
                 # De lo contrario, se anexa el nombre a la lista de nombres del evento.
-                nombres_anio[evento].append(cada_atleta['nombre'])
+                nombres_anio[cada_atleta['evento']].append(cada_atleta['nombre'])
     return nombres_anio
 
 
@@ -91,7 +91,7 @@ def obtener_medallas_de_atleta(atletas: list, anio_0: int, anio_f: int, nombre_a
     # Inicio de recorrido por la lista de atletas.
     for cada_atleta in atletas:
         # Definición de variables del atleta actual.
-        anio_actual = cada_atleta['anio']
+        anio_actual = int(cada_atleta['anio'])
         nombre_actual = cada_atleta['nombre']
         evento_actual = cada_atleta['evento']
         medalla_actual = cada_atleta['medalla']

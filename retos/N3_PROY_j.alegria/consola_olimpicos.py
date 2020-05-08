@@ -21,24 +21,26 @@ def ejecutar_cargar_atletas() -> list:
     Retorno: list
         La lista de atletas con la información del archivo.
     """
-    atletas = None
     archivo = input("Por favor ingrese el nombre del archivo CSV con los atletas: ")
     atletas = olim.cargar_atletas(archivo)
     if len(atletas) == 0:
         print("El archivo seleccionado no es válido. No se pudieron cargar los atletas olímpicos")
+        atletas = None
     else:
         print("Se cargaron", len(atletas), "atletas a partir del archivo.")
+    print(atletas)
     return atletas
 
 
 def ejecutar_atletas_por_anio(atletas: list) -> None:
     """ Ejecuta la opción de buscar los atletas de un año dado
     """
-    
     anio = int(input("Ingrese el año de su interés: "))
-    
-    #TODO: complete el código haciendo el llamado a la función del módulo que
-    #implementa este requerimiento e imprimiendo por pantalla el resultado
+    eventos_anio = olim.obtener_atletas_de_anio(atletas, anio)
+    print("-----------------------------------------------------" + "\n")
+    for cada_evento in eventos_anio.keys():
+        print(cada_evento + " - atletas: " + str(eventos_anio[cada_evento]) + "\n")
+        print("-----------------------------------------------------" + "\n")
 
 
 def ejecutar_medallas_en_rango(atletas: list) -> None:
@@ -140,9 +142,10 @@ def ejecutar_porcentaje_medallistas(atletas: list) -> None:
         
     #TODO: complete el código haciendo el llamado a la función del módulo que
     #implementa este requerimiento e imprimiendo por pantalla el resultado
+    pritn("El porcentaje de medalli")
 
 
-def mostrar_menu():
+def mostrar_menu() -> None:
     """Imprime las opciones de ejecución disponibles para el usuario.
     """
     print("\nOpciones")
@@ -161,15 +164,15 @@ def mostrar_menu():
     print("13. Salir de la aplicación")
 
 
-def iniciar_aplicacion():
+def iniciar_aplicacion() -> None:
     """Ejecuta el programa para el usuario."""
     continuar = True
     atletas = list()
     while continuar:
         mostrar_menu()
-        opcion_seleccionada = int(input("Por favor seleccione una opción: "))
+        opcion_seleccionada = int(input("\nPor favor seleccione una opción: "))
         if opcion_seleccionada == 1:
-            atletas=ejecutar_cargar_atletas()
+            atletas = ejecutar_cargar_atletas()
         elif opcion_seleccionada == 2:
             ejecutar_atletas_por_anio(atletas)
         elif opcion_seleccionada == 3:
