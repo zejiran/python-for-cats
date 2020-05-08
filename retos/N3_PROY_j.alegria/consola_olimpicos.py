@@ -37,7 +37,7 @@ def ejecutar_atletas_por_anio(atletas: list) -> None:
     # Ejecuta la opción de buscar los atletas de un año dado.
     anio = int(input("Ingrese el año de su interés: "))
     eventos_anio = olim.obtener_atletas_de_anio(atletas, anio)
-    print("Eventos y sus atletas en el año", anio, "\n")
+    print("\nEventos y sus atletas en el año", anio, ":\n")
     print("-----------------------------------------------------" + "\n")
     for cada_evento in eventos_anio.keys():
         print(cada_evento + " - atletas: " + str(eventos_anio[cada_evento]) + "\n")
@@ -50,20 +50,23 @@ def ejecutar_medallas_en_rango(atletas: list) -> None:
     aniomenor = int(input("Ingrese el límite inferior del rango: "))
     aniomayor = int(input("Ingrese el límite superior del rango: "))
     medallas_atleta = olim.obtener_medallas_de_atleta(atletas, aniomenor, aniomayor, nombre)
-    print("Medallas de", nombre, "desde", aniomenor, "a", aniomayor, "\n")
-    print("-----------------------------------------------------" + "\n")
-    for cada_medalla in medallas_atleta:
-        print("Evento:", cada_medalla['evento'], "\n")
-        print("Año:", cada_medalla['anio'], "\n")
-        print("Medalla:", cada_medalla['medalla'] + "\n")
+    if medallas_atleta:
+        print("\nMedallas de", nombre, "desde", aniomenor, "a", aniomayor, ":\n")
         print("-----------------------------------------------------" + "\n")
+        for cada_medalla in medallas_atleta:
+            print("Evento:", cada_medalla['evento'], "\n")
+            print("Año:", cada_medalla['anio'], "\n")
+            print("Medalla:", cada_medalla['medalla'] + "\n")
+            print("-----------------------------------------------------" + "\n")
+    else:
+        print("No hay medallas para ese atleta")
 
 
 def ejecutar_atletas_por_pais(atletas: list) -> None:
     # Ejecuta la opción de buscar los atletas de un país específico.
     pais = input("Ingrese el nombre del país de su interés: ")
     atletas_pais = olim.obtener_atletas_pais(atletas, pais)
-    print("Atletas de", pais, "\n")
+    print("\nAtletas de", pais, ":\n")
     print("-----------------------------------------------------" + "\n")
     for cada_atleta in atletas_pais:
         print("Nombre:", cada_atleta['nombre'], "\n")
@@ -96,11 +99,14 @@ def ejecutar_atletas_con_mas_medallas_que(atletas: list) -> None:
     # Ejecuta la opción de buscar los atletas que han obtenido una cantidad de medallas superior a un número dado.
     limite = int(input("Ingrese el mínimo de medallas: "))
     sobrepasa_limite = olim.obtener_atletas_medallas_superiores_a_numero(atletas, limite)
-    print("-----------------------------------------------------" + "\n")
-    for cada_atleta in sobrepasa_limite:
-        print("Atleta:", cada_atleta, "\n")
-        print("Cantidad de medallas ganadas:", sobrepasa_limite[cada_atleta], "\n")
+    if sobrepasa_limite != {}:
         print("-----------------------------------------------------" + "\n")
+        for cada_atleta in sobrepasa_limite:
+            print("Atleta:", cada_atleta, "\n")
+            print("Cantidad de medallas ganadas:", sobrepasa_limite[cada_atleta], "\n")
+            print("-----------------------------------------------------" + "\n")
+    else:
+        print("Ningún atleta tiene tantas medallas.")
 
 
 def ejecutar_atleta_estrella(atletas: list) -> None:

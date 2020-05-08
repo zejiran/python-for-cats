@@ -87,7 +87,7 @@ def obtener_medallas_de_atleta(atletas: list, anio_0: int, anio_f: int, nombre_a
             diccionario de cada medalla: {'evento': str, 'anio': int, 'medalla': str}.
     """
     # Inicializar lista de medallas.
-    medallas_atleta = list()
+    medallas_atleta = []
     # Inicio de recorrido por la lista de atletas.
     for cada_atleta in atletas:
         # Definición de variables del atleta actual.
@@ -98,11 +98,9 @@ def obtener_medallas_de_atleta(atletas: list, anio_0: int, anio_f: int, nombre_a
         # Verificación de nombre y rango de tiempo.
         if nombre_actual == nombre_atleta:
             if anio_0 <= anio_actual <= anio_f:
-                # Se añade el diccionario de medalla a la lista.
-                medallas_atleta.append({'evento': evento_actual, 'anio': anio_actual, 'medalla': medalla_actual})
-    # Si no hay medallas se coloca un mensaje en la lista de retorno.
-    if not medallas_atleta:
-        medallas_atleta.append("No hay medallas para ese atleta")
+                if medalla_actual != "na":
+                    # Se añade el diccionario de medalla a la lista.
+                    medallas_atleta.append({'evento': evento_actual, 'anio': anio_actual, 'medalla': medalla_actual})
     return medallas_atleta
 
 
@@ -131,9 +129,6 @@ def obtener_atletas_pais(atletas: list, pais_interes: str) -> list:
         if pais_actual == pais_interes:
             # Se añade el diccionario de atleta a la lista de atletas.
             atletas_pais.append({'nombre': nombre_actual, 'evento': evento_actual, 'anio': anio_actual})
-    # Si no hay atletas en el país se coloca un mensaje en la lista de retorno.
-    if not atletas_pais:
-        atletas_pais.append("No hay atletas en el país")
     return atletas_pais
 
 
@@ -217,6 +212,7 @@ def obtener_atletas_medallas_superiores_a_numero(atletas: list, numero_medallas:
     """
     # Inicializar diccionario de atletas aprobados.
     ganadores_superiores = {}
+    aprobados = {}
     # Inicio de recorrido por la lista de atletas.
     for cada_atleta in atletas:
         # Datos del atleta actual.
@@ -230,9 +226,9 @@ def obtener_atletas_medallas_superiores_a_numero(atletas: list, numero_medallas:
     for cada_atleta in ganadores_superiores:
         medallas_atleta = ganadores_superiores[cada_atleta]
         # Los atletas que tienen medallas estrictamente superiores al parámetro, no serán eliminados.
-        if medallas_atleta <= numero_medallas:
-            del ganadores_superiores[cada_atleta]
-    return ganadores_superiores
+        if medallas_atleta > numero_medallas:
+            aprobados[cada_atleta] = medallas_atleta
+    return aprobados
 
 
 # Función 8.
@@ -265,7 +261,8 @@ def encontrar_atletas_estrella(atletas: list) -> dict:
             if estrellas[nombre_actual] > mas_medallas:
                 mas_medallas = estrellas[nombre_actual]
     # Se eliminan todos los atletas que no estén empatados con la estrella.
-    for cada_atleta in estrellas:
+    estrellas_temp = estrellas.copy()
+    for cada_atleta in estrellas_temp:
         if estrellas[cada_atleta] < mas_medallas:
             del estrellas[cada_atleta]
     return estrellas
@@ -304,19 +301,21 @@ def encontrar_pais_destacado_en_evento(atletas: list, evento: str) -> dict:
             # Se agrega la medalla al diccionario de paises en la llave correspondiente.
             if medalla_actual != "na":
                 # Si no se ha registrado el país, se inicializa el número de medallas del país en una lista.
-                paises[pais_actual] = [0, 0, 0]
+                if pais_actual not in paises:
+                    paises[pais_actual] = [0, 0, 0]
                 # Se incrementa la medalla en la lista de acuerdo al tipo.
                 if medalla_actual == "gold":
                     paises[pais_actual][0] += 1
                 elif medalla_actual == "silver":
                     paises[pais_actual][1] += 1
-                else:
+                elif medalla_actual == "bronze":
                     paises[pais_actual][2] += 1
                 # Se verifica el país con el máximo número de medallas de oro por el momento.
                 if paises[pais_actual][0] > mas_medallas_oro:
                     mas_medallas_oro = paises[pais_actual][0]
     # Desempates plata.
-    for cada_pais in paises:
+    paises_temp = paises.copy()
+    for cada_pais in paises_temp:
         # Se eliminan todos los países que no estén empatados con el país ganador de oro.
         if paises[cada_pais][0] < mas_medallas_oro:
             del paises[cada_pais]
@@ -325,7 +324,8 @@ def encontrar_pais_destacado_en_evento(atletas: list, evento: str) -> dict:
             if paises[cada_pais][1] > mas_medallas_plata:
                 mas_medallas_plata = paises[cada_pais][1]
     # Desempates bronce.
-    for cada_pais in paises:
+    paises_temp = paises.copy()
+    for cada_pais in paises_temp:
         # Se eliminan todos los paises que no estén empatados con el país ganador de plata.
         if paises[cada_pais][1] < mas_medallas_plata:
             del paises[cada_pais]
@@ -334,7 +334,8 @@ def encontrar_pais_destacado_en_evento(atletas: list, evento: str) -> dict:
             if paises[cada_pais][2] > mas_medallas_bronce:
                 mas_medallas_bronce = paises[cada_pais][2]
     # Permanece solamente los países empatados en bronce.
-    for cada_pais in paises:
+    paises_temp = paises.copy()
+    for cada_pais in paises_temp:
         # Se eliminan todos los paises que no estén empatados con el país ganador de bronce.
         if paises[cada_pais][2] < mas_medallas_bronce:
             del paises[cada_pais]
@@ -363,13 +364,13 @@ def encontrar_todoterreno(atletas: list) -> str:
         nombre_actual = cada_atleta['nombre']
         evento_actual = cada_atleta['evento']
         # Se agrega cada atleta y sus eventos a una lista del diccionario, si no está el evento agregado.
-        if evento_actual not in todoterreno[nombre_actual]:
-            # Se agrega el evento actual a la lista dentro del diccionario con llave el atleta.
-            todoterreno[nombre_actual].append(evento_actual)
+        if evento_actual not in todoterreno:
             # Se obtiene el número de eventos del atleta
             eventos = todoterreno.get(nombre_actual, [0])[0]
             # Se agrega un evento más a la posición 0 de la lista del atleta
-            todoterreno[nombre_actual][0] = eventos + 1
+            todoterreno[nombre_actual] = [eventos + 1]
+            # Se agrega el evento actual a la lista dentro del diccionario con llave el atleta.
+            todoterreno[nombre_actual].append(evento_actual)
         # Se verifica el atleta todoterreno.
         if todoterreno[nombre_actual][0] >= mas_eventos:
             mas_eventos = todoterreno[nombre_actual][0]
