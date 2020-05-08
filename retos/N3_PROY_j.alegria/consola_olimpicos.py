@@ -16,7 +16,8 @@ import olimpicos as olim
 
 
 def ejecutar_cargar_atletas() -> list:
-    """Solicita al usuario que ingrese el nombre de un archivo CSV con los datos de
+    """
+    Solicita al usuario que ingrese el nombre de un archivo CSV con los datos de
     los atletas y los carga.
     Retorno: list
         La lista de atletas con la información del archivo.
@@ -24,7 +25,7 @@ def ejecutar_cargar_atletas() -> list:
     archivo = input("Por favor ingrese el nombre del archivo CSV con los atletas: ")
     atletas = olim.cargar_atletas(archivo)
     if len(atletas) == 0:
-        print("El archivo seleccionado no es válido. No se pudieron cargar los atletas olímpicos")
+        print("El archivo seleccionado no es válido. No se pudieron cargar los atletas olímpicos.")
         atletas = None
     else:
         print("Se cargaron", len(atletas), "atletas a partir del archivo.")
@@ -33,10 +34,10 @@ def ejecutar_cargar_atletas() -> list:
 
 
 def ejecutar_atletas_por_anio(atletas: list) -> None:
-    """ Ejecuta la opción de buscar los atletas de un año dado
-    """
+    # Ejecuta la opción de buscar los atletas de un año dado.
     anio = int(input("Ingrese el año de su interés: "))
     eventos_anio = olim.obtener_atletas_de_anio(atletas, anio)
+    print("Eventos y sus atletas en el año", anio, "\n")
     print("-----------------------------------------------------" + "\n")
     for cada_evento in eventos_anio.keys():
         print(cada_evento + " - atletas: " + str(eventos_anio[cada_evento]) + "\n")
@@ -44,110 +45,118 @@ def ejecutar_atletas_por_anio(atletas: list) -> None:
 
 
 def ejecutar_medallas_en_rango(atletas: list) -> None:
-    """ Ejecuta la opción de buscar las medallas de un atleta
-    en un rango específico de años 
-    """ 
-    
+    # Ejecuta la opción de buscar las medallas de un atleta en un rango específico de años.
     nombre = input("Ingrese el nombre del atleta de su interés: ")
     aniomenor = int(input("Ingrese el límite inferior del rango: "))
     aniomayor = int(input("Ingrese el límite superior del rango: "))
-    
-    #TODO: complete el código haciendo el llamado a la función del módulo que
-    #implementa este requerimiento e imprimiendo por pantalla el resultado
+    medallas_atleta = olim.obtener_medallas_de_atleta(atletas, aniomenor, aniomayor, nombre)
+    print("Medallas de", nombre, "desde", aniomenor, "a", aniomayor, "\n")
+    print("-----------------------------------------------------" + "\n")
+    for cada_medalla in medallas_atleta:
+        print("Evento:", cada_medalla['evento'], "\n")
+        print("Año:", cada_medalla['anio'], "\n")
+        print("Medalla:", cada_medalla['medalla'] + "\n")
+        print("-----------------------------------------------------" + "\n")
 
 
 def ejecutar_atletas_por_pais(atletas: list) -> None:
-    """ Ejecuta la opción de buscar los atletas de un país específico
-    """
-    
+    # Ejecuta la opción de buscar los atletas de un país específico.
     pais = input("Ingrese el nombre del país de su interés: ")
-    
-    #TODO: complete el código haciendo el llamado a la función del módulo que
-    #implementa este requerimiento e imprimiendo por pantalla el resultado
+    atletas_pais = olim.obtener_atletas_pais(atletas, pais)
+    print("Atletas de", pais, "\n")
+    print("-----------------------------------------------------" + "\n")
+    for cada_atleta in atletas_pais:
+        print("Nombre:", cada_atleta['nombre'], "\n")
+        print("Evento:", cada_atleta['evento'], "\n")
+        print("Año:", cada_atleta['anio'], "\n")
+        print("-----------------------------------------------------" + "\n")
 
 
 def ejecutar_pais_con_mas_atletas(atletas: list) -> None:
-    """ Ejecuta la opción de buscar el país con más atletas
-    """
-    
-    #TODO: complete el código haciendo el llamado a la función del módulo que
-    #implementa este requerimiento e imprimiendo por pantalla el resultado
+    # Ejecuta la opción de buscar el país con más atletas.
+    pais_atletico = olim.encontrar_pais_medallista(atletas)
+    print("-----------------------------------------------------" + "\n")
+    print(list(pais_atletico.keys())[0],
+          "es el país con la mayor cantidad de medallistas en todos los tiempos de los juegos olímpicos.", "\n")
+    print("Cantidad de medallistas:", pais_atletico[list(pais_atletico.keys())[0]], "\n")
+    print("-----------------------------------------------------" + "\n")
 
 
 def ejecutar_medallistas_por_evento(atletas: list) -> None:
-    """ Ejecuta la opción de buscar los medallistas de un evento dado
-    """
-    
+    # Ejecuta la opción de buscar los medallistas de un evento dado.
     evento = input("Ingrese el evento de su interés: ")
-    
-    #TODO: complete el código haciendo el llamado a la función del módulo que
-    #implementa este requerimiento e imprimiendo por pantalla el resultado
+    medallistas = olim.obtener_ganadores_de_evento(atletas, evento)
+    print("-----------------------------------------------------" + "\n")
+    for cada_medallista in medallistas:
+        print("Medallista:", cada_medallista, "\n")
+        print("-----------------------------------------------------" + "\n")
 
 
 def ejecutar_atletas_con_mas_medallas_que(atletas: list) -> None:
-    """ Ejecuta la opción de buscar los atletas que han obtenido 
-    una cantidad de medallas superior a un número dado
-    """
-    
+    # Ejecuta la opción de buscar los atletas que han obtenido una cantidad de medallas superior a un número dado.
     limite = int(input("Ingrese el mínimo de medallas: "))
-    
-    #TODO: complete el código haciendo el llamado a la función del módulo que
-    #implementa este requerimiento e imprimiendo por pantalla el resultado)
+    sobrepasa_limite = olim.obtener_atletas_medallas_superiores_a_numero(atletas, limite)
+    print("-----------------------------------------------------" + "\n")
+    for cada_atleta in sobrepasa_limite:
+        print("Atleta:", cada_atleta, "\n")
+        print("Cantidad de medallas ganadas:", sobrepasa_limite[cada_atleta], "\n")
+        print("-----------------------------------------------------" + "\n")
 
 
 def ejecutar_atleta_estrella(atletas: list) -> None:
-    """ Ejecuta la opción de buscar el atleta con
-    más medallas de todos los tiempos
-    """
-    
-    #TODO: complete el código haciendo el llamado a la función del módulo que
-    #implementa este requerimiento e imprimiendo por pantalla el resultado
+    # Ejecuta la opción de buscar el atleta con más medallas de todos los tiempos.
+    estrellas = olim.encontrar_atletas_estrella(atletas)
+    print("-----------------------------------------------------" + "\n")
+    for cada_atleta in estrellas:
+        print("Atleta estrella:", cada_atleta, "\n")
+        print("Cantidad de medallas ganadas:", estrellas[cada_atleta], "\n")
+        print("-----------------------------------------------------" + "\n")
 
 
 def ejecutar_mejor_pais_en_un_evento(atletas: list) -> None:
-    """ Ejecuta la opción de buscar el país con mejor
-    desempeño en un evento en específico
-    """
-    
+    # Ejecuta la opción de buscar el país con mejor desempeño en un evento en específico.
     evento = input("Ingrese el evento de su interés: ")
-    
-    #TODO: complete el código haciendo el llamado a la función del módulo que
-    #implementa este requerimiento e imprimiendo por pantalla el resultado
+    destacado = olim.encontrar_pais_destacado_en_evento(atletas, evento)
+    print("-----------------------------------------------------" + "\n")
+    for cada_pais in destacado:
+        print("País destacado en", evento, cada_pais, "\n")
+        print("Cantidad de medallas de oro ganadas:", destacado[cada_pais][0], "\n")
+        print("Cantidad de medallas de plata ganadas:", destacado[cada_pais][1], "\n")
+        print("Cantidad de medallas de bronce ganadas:", destacado[cada_pais][2], "\n")
+        print("-----------------------------------------------------" + "\n")
 
 
 def ejecutar_todoterreno(atletas: list) -> None:
-    """ Ejecuta la opción de buscar el atleta más todoterreno
-    de todos los tiempos
-    """
-    
-    #TODO: complete el código haciendo el llamado a la función del módulo que
-    #implementa este requerimiento e imprimiendo por pantalla el resultado
+    # Ejecuta la opción de buscar el atleta más todoterreno de todos los tiempos.
+    todoterreno = olim.encontrar_todoterreno(atletas)
+    print(todoterreno, "es el atleta todoterreno, aquel que ha participado en más eventos diferentes.")
 
 
 def ejecutar_medallistas_por_nacion_y_genero(atletas: list) -> None:
-    """ Ejecuta la opción de buscar los medallistas de un país
-    y género específicos
-    """
-    
+    # Ejecuta la opción de buscar los medallistas de un país y género específicos.
     pais = input("Ingrese el país de su interés: ")
     genero = input("Ingrese el género de su interés (m o f): ")
-    
-    #TODO: complete el código haciendo el llamado a la función del módulo que
-    #implementa este requerimiento e imprimiendo por pantalla el resultado
+    medallistas = olim.obtener_medallistas_por_genero_pais(atletas, pais, genero)
+    print("Hay", len(medallistas), "atletas de", pais, "y género", genero, "\n")
+    print("-----------------------------------------------------" + "\n")
+    for cada_medallista in medallistas:
+        print(cada_medallista, "\n")
+        for cada_evento in medallistas[cada_medallista]:
+            print("--> ")
+            print("Evento:", cada_evento['evento'], "\n")
+            print("Año:", cada_evento['anio'], "\n")
+            print("Medalla:", cada_evento['medalla'] + "\n")
+        print("-----------------------------------------------------" + "\n")
 
 
 def ejecutar_porcentaje_medallistas(atletas: list) -> None:
-    """ Ejecuta la opción de calcular el porcentaje de medallistas 
-    """
-        
-    #TODO: complete el código haciendo el llamado a la función del módulo que
-    #implementa este requerimiento e imprimiendo por pantalla el resultado
-    pritn("El porcentaje de medalli")
+    # Ejecuta la opción de calcular el porcentaje de medallistas.
+    porcentaje = str(olim.calcular_porcentaje_ganador(atletas) * 100) + "%"
+    print("El porcentaje de atletas que ganan medallas es", porcentaje, "\n")
 
 
 def mostrar_menu() -> None:
-    """Imprime las opciones de ejecución disponibles para el usuario.
-    """
+    # Imprime las opciones de ejecución disponibles para el usuario.
     print("\nOpciones")
     print("1. Cargar un archivo de atletas")
     print("2. Consultar los atletas de un año dado")
@@ -165,7 +174,7 @@ def mostrar_menu() -> None:
 
 
 def iniciar_aplicacion() -> None:
-    """Ejecuta el programa para el usuario."""
+    # Ejecuta el programa para el usuario.
     continuar = True
     atletas = list()
     while continuar:

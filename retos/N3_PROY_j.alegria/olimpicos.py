@@ -29,8 +29,8 @@ def cargar_atletas(nombre_archivo: str) -> list:
     while len(linea) > 0:
         datos = linea.split(",")
         # Creación de diccionario de atleta individual
-        atleta = {'nombre': datos[0], 'genero': datos[1], 'edad': datos[2],
-                  'pais': datos[3], 'anio': datos[4], 'evento': datos[5],
+        atleta = {'nombre': datos[0], 'genero': datos[1], 'edad': int(datos[2]),
+                  'pais': datos[3], 'anio': int(datos[4]), 'evento': datos[5],
                   'medalla': datos[6].replace("\n", '')}
         # Se añade el diccionario del atleta a la lista global de atletas.
         atletas.append(atleta)
@@ -61,7 +61,7 @@ def obtener_atletas_de_anio(atletas: list, anio_interes: int) -> dict:
     # Inicio de reccorido por la lista de atletas.
     for cada_atleta in atletas:
         # Verificar atletas del año de interés.
-        if anio_interes == int(cada_atleta['anio']):
+        if anio_interes == cada_atleta['anio']:
             # Verificar si el evento deportivo ya estaba agregado al diccionario de retorno.
             evento = nombres_anio.get(cada_atleta['evento'], "")
             if evento == "":
@@ -91,7 +91,7 @@ def obtener_medallas_de_atleta(atletas: list, anio_0: int, anio_f: int, nombre_a
     # Inicio de recorrido por la lista de atletas.
     for cada_atleta in atletas:
         # Definición de variables del atleta actual.
-        anio_actual = int(cada_atleta['anio'])
+        anio_actual = cada_atleta['anio']
         nombre_actual = cada_atleta['nombre']
         evento_actual = cada_atleta['evento']
         medalla_actual = cada_atleta['medalla']
@@ -133,7 +133,7 @@ def obtener_atletas_pais(atletas: list, pais_interes: str) -> list:
             atletas_pais.append({'nombre': nombre_actual, 'evento': evento_actual, 'anio': anio_actual})
     # Si no hay atletas en el país se coloca un mensaje en la lista de retorno.
     if not atletas_pais:
-        atletas_pais.append("No hay medallas para ese atleta")
+        atletas_pais.append("No hay atletas en el país")
     return atletas_pais
 
 
