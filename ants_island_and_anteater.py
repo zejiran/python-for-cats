@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@author: alxus27
+@author: zejiran
 
 En la isla del Edén vive una gran cantidad de hormigas
 que se reproducen a una tasa del 40% mensual; en la isla

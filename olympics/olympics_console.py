@@ -9,7 +9,7 @@ Temas:
 * Diccionarios
 * Archivos
 
-@author: zejiran
+@author: zejiran.
 """
 
 import olympics_module as olim

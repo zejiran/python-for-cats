@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@author: alxus27
+@author: zejiran
 """
 
 # Programa para calcular la energía necesaria para cambiar la temperatura de una masa de agua

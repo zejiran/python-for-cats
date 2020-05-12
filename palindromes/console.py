@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@author: j.alegria
+@author: zejiran.
 """
 
 import modulo as mod

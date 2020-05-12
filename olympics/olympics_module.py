@@ -3,7 +3,7 @@
 Ejercicio nivel 3: Atletas Olímpicos.
 Modulo de funciones para la aplicación.
 
-@author: zejiran
+@author: zejiran.
 """
 
 

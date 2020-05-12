@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@author: zejiran
+@author: zejiran.
 """
 
 import friend_module as md

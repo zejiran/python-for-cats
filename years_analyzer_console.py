@@ -2,7 +2,7 @@
 """
 Created on Mon Jul 22 21:47:01 2019
 
-@author: Cupi2
+@author: zejiran.
 """
 
 import year_analyzer_module as mod

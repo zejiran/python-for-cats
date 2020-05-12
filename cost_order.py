@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@author: alxus27
+@author: zejiran
 """
 
 # Programa para calcular el costo de la orden realizada en un restaurante

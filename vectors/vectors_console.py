@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@author: alxus27
+@author: zejiran.
 """
 
 import vectors_module as vect

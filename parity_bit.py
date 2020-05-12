@@ -2,7 +2,7 @@
 """
 Ejercicio de examen nivel 3 - #1: Mecanismo simple bit de paridad.
 
-@author: zejiran/j.alegria.
+@author: zejiran.
 """
 
 
