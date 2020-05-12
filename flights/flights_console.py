@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@author: alxus27
+@author: zejiran.
 """
 
 import flights_module as lib_vuelos

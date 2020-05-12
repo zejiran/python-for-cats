@@ -2,7 +2,7 @@
 """
 Created on Thu Feb  6 10:49:23 2020
 
-@author: zejiran
+@author: zejiran.
 """
 
 
