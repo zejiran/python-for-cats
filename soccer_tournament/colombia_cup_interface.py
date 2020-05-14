@@ -3,7 +3,7 @@
 Created by zejiran.
 """
 
-import modulo_copa_colombia as mod
+import colombia_cup_module as mod
 
 
 def ejecutar_cargar_equipos() -> dict:
