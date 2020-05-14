@@ -50,7 +50,7 @@ def ejecutar_anotar_marcador(tablero_goles: list, equipos: dict) -> list:
 
 def ejecutar_total_goles(tablero_goles: list) -> None:
     total_goles = mod.total_goles(tablero_goles)
-    print("El total de goles marcados en el campeonato son: ", total_goles)
+    print("El total de goles marcados en el campeonato son:", total_goles, "goles.")
 
 
 def ejecutar_partidos_jugados(tablero_goles: list) -> None:
