@@ -74,7 +74,7 @@ def ejecutar_partidos_empatados(tablero_goles: list) -> None:
 
 
 def ejecutar_mayor_numero_goles(tablero_goles: list) -> None:
-    mayor_numero = mod.ejecutar_mayor_numero_goles(tablero_goles)
+    mayor_numero = mod.mayor_numero_goles(tablero_goles)
     print("El mayor número de goles marcados en un partido es: ", mayor_numero)
 
 
@@ -106,7 +106,7 @@ def iniciar_aplicacion() -> None:
     """
     print("-----------------------------------------------------------------------")
     print("-----------------------------------------------------------------------")
-    print("BIENVENIDO A LA APP COPA COLOMBIA 2019")
+    print("BIENVENIDO A LA APP COPA COLOMBIA 2020")
     print("-----------------------------------------------------------------------")
     print("-----------------------------------------------------------------------")
     continuar = True

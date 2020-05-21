@@ -383,3 +383,74 @@ def vuelos_tarde(vuelos: dict) -> None:
         reporte.write("Hora de salida: " + str(vuelos[cada_codigo]['salida']))
     reporte.write("----------------------------------------\n")
     reporte.close()
+
+
+def encontrar_mayor(entrada: list) -> int:
+    """ Encontrar el elemento mayor
+    Parámetros:
+      entrada (list): La lista de números que se desea buscar
+    Retorno:
+      int: El número más grande en la lista, si está vacía -1.
+    """
+    mayor = -1
+    for numero in entrada:
+        if numero > mayor:
+            mayor = numero
+    return mayor
+
+
+def encontrar_menor(entrada: list) -> int:
+    """ Encontrar el elemento menor
+    Parámetros:
+      entrada (list): La lista
+    Retorno:
+      int: El número más pequeño en la lista, si es vacía None.
+    """
+    menor = None
+    if entrada:
+        menor = max(entrada)
+        for numero in entrada:
+            if numero < menor:
+                menor = numero
+    return menor
+
+
+def buscar_elemento(entrada: list, buscado: int) -> int:
+    """ Buscar un elemento en una lista
+    Parámetros:
+      entrada (list): Lista en la que se debe buscar el número
+      buscado (int): Número entero a buscar
+    Retorno:
+      int: Número que indica el índice en que se encuentra el elemento buscado. Si no está, retorna -1.
+    """
+    i = 0
+    encontrado = -1
+    se_encontro = False
+    while i < len(entrada) and not se_encontro:
+        if buscado == entrada[i]:
+            encontrado = i
+            se_encontro = True
+        i += 1
+    return encontrado
+
+
+def separar_por_edad(animales: dict, minimo: int, maximo: int) -> list:
+    """ Adopción Canina
+    Parámetros:
+      animales (dict): Diccionario cuyas llaves son los nombres de las mascotas y sus valores la edad de
+                       cada una
+      minimo (int): Edad mínima de los animales para esta habitación
+      maximo (int): Edad máxima de los animales para esta habitacion
+    Retorno:
+      list: Lista de str con los nombres de los animales para la habitación
+    """
+    seleccionados = []
+    if animales:
+        for animal in animales:
+            if minimo <= animales[animal] < maximo:
+                seleccionados.append(animal)
+    seleccionados.sort()
+    return seleccionados
+
+
+

@@ -151,7 +151,23 @@ def equipo_mas_goleado(tablero_goles: list, equipos: dict) -> str:
     Retorno: str
         El nombre del equipo más goleado del campeonato
     """
-    return "Ninguno"
+    goleado = "Ninguno"
+    nombre_equipos = list(equipos.keys())
+    goles_goleado = 0
+    # Recorrido para verificar goleador.
+    i = 0
+    while i < len(tablero_goles):
+        goles = 0
+        j = 0
+        while j < len(tablero_goles):
+            if tablero_goles[j][i] != -1 and tablero_goles[j][i] != -2:
+                goles += tablero_goles[j][i]
+            j += 1
+        if goles_goleado < goles:
+            goles_goleado = goles
+            goleado = nombre_equipos[i]
+        i += 1
+    return goleado
 
 
 def partidos_empatados(tablero_goles: list) -> int:
@@ -162,7 +178,12 @@ def partidos_empatados(tablero_goles: list) -> int:
     Retorno: int
         El total de partidos empatados en el campeonato
     """
-    return 0
+    tied = 0
+    for i in range(0, len(tablero_goles)):
+        for j in range(i + 1, len(tablero_goles[0])):
+            if tablero_goles[i][j] == tablero_goles[j][i] and tablero_goles[j][i] >= 0:
+                tied += 1
+    return tied
 
 
 def mayor_numero_goles(tablero_goles: list) -> int:
@@ -175,4 +196,24 @@ def mayor_numero_goles(tablero_goles: list) -> int:
     Retorno: int
         El mayor número de goles marcados en un partido del campeonato
     """
-    return 0
+    maximo_goles = 0
+    for i in range(0, len(tablero_goles)):
+        for j in range(i + 1, len(tablero_goles[0])):
+            total_goles_actual = tablero_goles[i][j] + tablero_goles[j][i]
+            if total_goles_actual > maximo_goles:
+                maximo_goles = total_goles_actual
+    return maximo_goles
+
+
+def is_goleada(tabla_goles: list) -> bool:
+    it_is = False
+    i = 0
+    while i < len(tabla_goles) and not it_is:
+        j = i + 1
+        while j < len(tabla_goles[0]) and not it_is:
+            diference = abs(tabla_goles[i][j] - tabla_goles[j][i])
+            if diference >= 3:
+                it_is = True
+            j += 1
+        i += 1
+    return it_is
