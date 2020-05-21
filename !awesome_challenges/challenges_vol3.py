@@ -453,4 +453,50 @@ def separar_por_edad(animales: dict, minimo: int, maximo: int) -> list:
     return seleccionados
 
 
+def encontrar_primer_par(numeros: list) -> int:
+    """ Primer par
+    Parámetros:
+      numeros (list): La lista de números a revisar
+    Retorno:
+      int: El primer número par en la lista. Si en la lista no hay números pares, se debe retornar None
+    """
+    es_par = False
+    i = 0
+    par = None
+    while i < len(numeros) and not es_par:
+        numero = numeros[i]
+        if numero % 2 == 0:
+            es_par = True
+            par = numero
+        i += 1
+    return par
 
+
+def sumar_valores_pares(numeros: list) -> int:
+    """ Sumar valores pares
+    Parámetros:
+      numeros (list): Una lista de números enteros.
+    Retorno:
+      int: La suma de los números de la lista que sean pares.
+    """
+    suma_par = 0
+    for numero in numeros:
+        if numero % 2 == 0:
+            suma_par += numero
+    return suma_par
+
+
+def sumar_pares(numeros: list) -> int:
+    """ Sumar posiciones pares
+    Parámetros:
+      numeros (list): La lista con los números a sumar.
+    Retorno:
+      int: La suma de los números de la lista que están en posiciones pares.
+    """
+    i = 0
+    suma_pospar = 0
+    while i < len(numeros):
+        if i % 2 == 0:
+            suma_pospar += numeros[i]
+        i += 1
+    return suma_pospar
