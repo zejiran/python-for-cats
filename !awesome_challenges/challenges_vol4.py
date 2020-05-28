@@ -13,3 +13,69 @@ def matriz_identidad(n: int) -> list:
         matriz.append(columna)
         i += 1
     return matriz
+
+
+def hacer_la_vaca(salon: list, vaca: str) -> tuple:
+    """ Vaca de Cumpleaños
+    Parámetros:
+      salon (list): Matriz que representa el salón de estudiantes y con enteros que representan cuanto
+                    dinero aportarán
+      vaca (str): Cadena que indica qué vaca se está realizando, esta puede ser 'botella' o 'pastel'
+    Retorno:
+      tuple: Tupla cuya primera posición es un str de la forma 'Hay Vaca' si se alcanzó la vaca, y 'No Alcanza'
+             de lo contrario, y las siguientes dos posiciones son las coordenadas del estudiante qué más dinero
+             aportó.
+    """
+    el_rico = [0, 0]
+    regalon_del_rico = 0
+    hay_vaca = False
+    if vaca == 'botella':
+        recolecta = 120000
+    elif vaca == 'pastel':
+        recolecta = 35000
+    else:
+        recolecta = -1000000000000000
+    i = 0
+    while i < len(salon):
+        j = 0
+        while j < len(salon[i]):
+            aporte_estudiante = salon[i][j]
+            # Verificar el mayor aporte.
+            if regalon_del_rico < aporte_estudiante:
+                regalon_del_rico = aporte_estudiante
+                el_rico = [i, j]
+            # Restar a la vaca.
+            recolecta -= aporte_estudiante
+            if recolecta <= 0 and recolecta != -1000000000000000:
+                hay_vaca = True
+            else:
+                hay_vaca = False
+            j += 1
+        i += 1
+    if hay_vaca:
+        retorno = 'Hay Vaca'
+    else:
+        retorno = 'No Alcanza'
+    el_rico.insert(0, retorno)
+    return tuple(el_rico)
+
+
+def calcular_suma_diagonal(diagonal_mayor: bool, matriz: list) -> int:
+    """ Suma en la diagonal
+    Parámetros:
+      diagonal_mayor (bool): bool que indica a cual de las diagonales se debe calcularle la suma. Si es
+                             True, se quiere calcular la suma de la diagonal mayor.
+      matriz (list): Lista de listas, representa la matriz cuadrada sobre la cual se quiere calcular la suma
+                     de alguna de sus diagonales. Todos los elementos de cada una de sus listas son enteros.
+    Retorno:
+      int: Entero con la suma acumulada sobre la diagonal solicitada de la matriz cuadrada que llega por
+           parámetro.
+    """
+    suma = 0
+    for i in range(0, len(matriz)):
+        if diagonal_mayor:
+            actual = matriz[i][i]
+        else:
+            actual = matriz[-i - 1][i]
+        suma += actual
+    return suma

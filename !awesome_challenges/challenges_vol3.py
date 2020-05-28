@@ -500,3 +500,6 @@ def sumar_pares(numeros: list) -> int:
             suma_pospar += numeros[i]
         i += 1
     return suma_pospar
+
+
+
