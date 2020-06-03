@@ -502,4 +502,153 @@ def sumar_pares(numeros: list) -> int:
     return suma_pospar
 
 
+def calcular_definitivas(estudiantes: list) -> list:
+    """ Aproximación de Notas
+    Parámetros:
+      estudiantes (list): Una lista de diccionarios que representan a los estudiantes que han finalizado el
+                          curso, con su nota final sin aproximar.  Cada diccionario tiene las siguientes
+                          llaves: "nombre": (str) el nombre del estudiante.  "nota": (float), un float que
+                          representa la nota sin aproximar del estudiante.
+    Retorno:
+      list: La función retorna una lista de diccionarios, con tantos diccionarios como estudiantes había en la
+            lista inicial, pero con sus notas aproximadas. El orden de los diccionarios debe ser el mismo de la
+            lista de entrada. Cada uno de los diccionarios retornados debe tener las llaves: "nombre" (str) y
+            "nota" (float).
+    """
+    for estudiante in estudiantes:
+        nota_actual = estudiante['nota']
+        if nota_actual >= 4.5:
+            nueva_nota = 5.0
+        elif nota_actual >= 3.5:
+            nueva_nota = 4.0
+        elif nota_actual >= 2.5:
+            nueva_nota = 3.0
+        else:
+            nueva_nota = 1.5
+        estudiante['nota'] = nueva_nota
+    return estudiantes
 
+
+def hay_suficientes_divisibles(d: int, numeros: list, n: int) -> bool:
+    """ Conteo de Divisibles
+    Parámetros:
+      d (int): El divisor contra el que se evaluarán los números de la lista. El número 'd' será un entero
+               positivo.
+      numeros (list): Una lista de números enteros positivos. La lista tiene al menos un elemento.
+      n (int): La cantidad de números mínima que se espera que cumplan con la condición de ser divisibles
+               por 'd'. El número 'n' será un entero mayor o igual a 0.
+    Retorno:
+      bool: Retorna el valor True si la lista recibida tiene al menos 'n' números que cumplen con ser divisibles
+            por el número 'd'. Retorna False de lo contrario.
+    """
+    divisibles = 0
+    for numero in numeros:
+        if numero % d == 0:
+            divisibles += 1
+    if divisibles >= n:
+        divisibles = True
+    else:
+        divisibles = False
+    return divisibles
+
+
+def mismos_digitos(a: int, b: int) -> bool:
+    """ Mismos Dígitos
+    Parámetros:
+      a (int): El primer número. Es un entero positivo.
+      b (int): El segundo número. Es un entero positivo.
+    Retorno:
+      bool: True si los digitos que aparecen en ambos números son los mismos. False de lo contrario.
+    """
+    c = str(min(a, b))
+    d = str(max(a, b))
+    i = 0
+    diferentes = False
+    while i < len(c) and not diferentes:
+        j = 0
+        contiene = 0
+        while j < len(d):
+            if c[i] == d[j]:
+                contiene += 1
+            j += 1
+        if contiene < 1:
+            diferentes = True
+        i += 1
+    return not diferentes
+
+
+def comprar_jugador(jugadores: list, monedas: int) -> str:
+    """ Fifa Ultimate Team
+    Parámetros:
+      jugadores (list): Una lista de diccionarios que representan a los jugadores de FUT que podrían ser
+                        comprados por Juan.  Cada diccionario tiene las siguientes llaves: "nombre": (str)
+                        el nombre del jugador. "precio": (int), un entero que representa la cantidad de
+                        monedas que vale el jugador. "media" (int): un entero mayor o igual a 50 y menor o
+                        igual a 99, que representa la ponderación general del jugador.
+      monedas (int): La cantidad de monedas FIFA de las que dispone Juan para comprar su jugador.
+    Retorno:
+      str: La función retorna el nombre del jugador comprado por Juan. Si las monedas no son suficientes para
+           comprar algún jugador, retorna None.
+    """
+    media_selecto = 0
+    precio_selecto = -1
+    selecto = 'MELANI2'
+    for jugador in jugadores:
+        if precio_selecto == -1:
+            precio_selecto = jugador['precio']
+        if monedas >= jugador['precio']:
+            if jugador['media'] > media_selecto or (precio_selecto >= jugador['precio'] and jugador['media'] ==
+                                                    media_selecto):
+                selecto = jugador['nombre']
+                media_selecto = jugador['media']
+                precio_selecto = jugador['precio']
+        elif selecto == 'MELANI2':
+            selecto = None
+    return selecto
+
+
+def construir_equipo_pokemon(cantidad: int, lista_pkmn: list) -> list:
+    """ Ash y la liga Kalos
+    Parámetros:
+      cantidad (int): La cantidad de Pokémon que usará cada entrenador en la batalla final. Es un entero
+                      entre 3 y 6.
+      lista_pkmn (list): Una lista compuesta de diccionarios. Los diccionarios representan cada uno de los
+                         Pokémon elegibles por Ash. Cada diccionario tiene las siguientes llaves: "nombre":
+                         (str) el nombre del Pokémon; se garantiza que no hay nombres repetidos en los
+                         diccionarios de la lista. "vida": (int),  "ataque": (int),  "defensa": (int),
+                         "ataque_especial": (int), "defensa_especial": (int) , "velocidad": (int) Cada uno
+                         de estos valores enteros representa la estadística respectiva del Pokémon.
+    Retorno:
+      list: La función retorna None si es imposible generar un equipo de Pokémon seudolegendarios para la
+            batalla. De lo contrario, retorna una lista con los nombres de los Pokémon a utilizar en la batalla.
+    """
+    pakimanes = []
+    i = 0
+    cant_pakimanes = 0
+    while cant_pakimanes < cantidad and i < len(lista_pkmn):
+        statistics = (lista_pkmn[i]["vida"] + lista_pkmn[i]["ataque"] + lista_pkmn[i]["defensa"] +
+                      lista_pkmn[i]["ataque_especial"] + lista_pkmn[i]["defensa_especial"] + lista_pkmn[i]["velocidad"])
+        if statistics >= 600:
+            pakimanes.append(lista_pkmn[i]['nombre'])
+            cant_pakimanes += 1
+        i += 1
+    if cant_pakimanes != cantidad:
+        pakimanes = None
+    return pakimanes
+
+
+def ordenar_cadena(cadena: str) -> str:
+    """ Ordenar cadena de caracteres
+    Parámetros:
+      cadena (str): La cadena a ordenar.
+    Retorno:
+      str: La cadena que entró por parámetro ordenada alfabéticamente.
+    """
+    cadena = list(cadena)
+    for i in range(0, len(cadena)):
+        for j in range(0, len(cadena)):
+            if cadena[i] < cadena[j]:
+                temp = cadena[i]
+                cadena[i] = cadena[j]
+                cadena[j] = temp
+    return ''.join(cadena)

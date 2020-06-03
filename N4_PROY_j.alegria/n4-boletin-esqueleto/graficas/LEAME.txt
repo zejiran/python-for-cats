@@ -1,1 +1,0 @@
-En esta carpeta se guardan las figuras generadas por el programa graficas_boletin.py que le hemos dado con el esqueleto del proyecto.
