@@ -221,7 +221,7 @@ def hay_facultad_generosa(matriz_puestos: list, facultad: str, porcentaje_puesto
 
 
 def calcular_autocubrimiento(matriz_puestos: list, matriz_facultades: list) -> list:
-    """ TODO
+    """
     Función 5 – Porcentaje de autocubrimiento.
     Calcula el porcentaje de autocubrimiento de todas las facultades.
 
@@ -242,6 +242,14 @@ def calcular_autocubrimiento(matriz_puestos: list, matriz_facultades: list) -> l
      :type matriz_facultades: list.
      :rtype: list.
     """
+    matriz_facultades[0].append("Porcentaje de autocubrimiento")
+    for columna in range(1, len(matriz_puestos)):
+        facultad_actual = matriz_puestos[0][columna]
+        ocupados = puestos_ocupados(matriz_puestos, facultad_actual)
+        ofrecidos = puestos_atendidos(matriz_puestos, facultad_actual)
+        autocubrimiento_actual = round(ocupados / ofrecidos, 2)
+        matriz_facultades[columna].append(autocubrimiento_actual)
+    return matriz_facultades
 
 
 def doble_mas_comun(matriz_dobles: list) -> tuple:

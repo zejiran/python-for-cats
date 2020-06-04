@@ -114,11 +114,9 @@ def ejecutar_calcular_autocubrimiento(puestos: list, estadisticas: list) -> None
     """ Ejecuta la opcion de calcular el autocubrimiento para todas
     las facultades
     """
-
-    # TODO: complete el codigo haciendo el llamado a la funcion del modulo que
-    # implementa este requerimiento e imprimiendo por pantalla el resultado
-    # Le sugerimos solo imprimir la informacion de ultima columna de la
-    # matriz de respuesta pues es la que contiene la informacion calculada.
+    be.calcular_autocubrimiento(puestos, estadisticas)
+    for fila in estadisticas:
+        print(fila[-1])
 
 
 def ejecutar_doble_mas_comun(dobles: list) -> None:
