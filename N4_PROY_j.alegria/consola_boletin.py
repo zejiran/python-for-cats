@@ -95,9 +95,9 @@ def ejecutar_puestos_ocupados(puestos: list) -> None:
 def ejecutar_facultad_mas_servicial(puestos: list) -> None:
     """ Ejecuta la opcion de consultar la facultad mas servicial
     """
-
-    # TODO: complete el codigo haciendo el llamado a la funcion del modulo que
-    # implementa este requerimiento e imprimiendo por pantalla el resultado
+    servicial = be.facultad_mas_servicial(puestos)
+    nombre, porcentaje = servicial
+    print("La facultad más servicial es la de", nombre, "con un porcentaje de relación de", str(porcentaje) + "%.\n")
 
 
 def ejecutar_hay_facultad_generosa(puestos: list) -> None:

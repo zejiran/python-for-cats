@@ -135,26 +135,40 @@ def puestos_ocupados(matriz_puestos: list, facultad_interes: str) -> int:
 
 
 def facultad_mas_servicial(matriz_puestos: list) -> tuple:
-    """ TODO
+    """
     Función 3 – Facultad más servicial.
     La facultad más servicial es aquella que atiende un mayor número de puestos estudiante de otras facultades,
     comparativamente con sus propios puestos estudiante atendidos.
 
     :param matriz_puestos: la matriz de puestos estudiante.
     :return: retorna una tupla con la información de la facultad más servicial.
+        - La primera posición de la tupla que retorna esta función debe ser el nombre de la facultad más servicial.
+        - La segunda posición de la tupla, el porcentaje de puestos estudiante de las demás
+        facultades que son atendidos por dicha facultad (redondeado a dos decimales).
 
     :type matriz_puestos: list.
     :rtype: tuple.
 
-    :Ejemplo: a facultad de medicina atiende un total de 4444 puestos estudiante. De estos puestos,
+    :Ejemplo: la facultad de medicina atiende un total de 4444 puestos estudiante. De estos puestos,
     4318 son de estudiantes de medicina y tan solo 126 son de otras facultades. Por consiguiente,
     la relación puestos de otras facultades/puestos propios es: 126/4444 = 0.028. Esto quiere decir que solo el 2.83%
     de los puestos estudiante de la Facultad de Medicina son tomados por estudiantes de otras facultades.
     Es fácil deducir que Medicina no es la facultad más servicial, según esta definición.
-    La primera posición de la tupla que retorna esta función debe ser el nombre de la facultad más servicial
-    y la segunda posición de la tupla, el porcentaje de puestos estudiante de las demás facultades que son atendidos
-    por dicha facultad (redondeado a dos decimales).
     """
+    porcentaje = 0
+    servicial = None
+    for fila in range(1, len(matriz_puestos)):
+        fila_actual = matriz_puestos[fila]
+        columna_misma_facultad = fila
+        puestos_facultad_total = puestos_atendidos(matriz_puestos, fila_actual[0])
+        puestos_misma_facultad = int(fila_actual[columna_misma_facultad])
+        puestos_facultad_diferente = puestos_facultad_total - puestos_misma_facultad
+        relacion = puestos_facultad_diferente / puestos_facultad_total
+        if relacion > porcentaje:
+            porcentaje = relacion
+            servicial = fila_actual[0]
+    redondeo = round(porcentaje * 100, 2)
+    return servicial, redondeo
 
 
 def hay_facultad_generosa(matriz_puestos: list, facultad: str, porcentaje_puestos: float) -> tuple:
