@@ -172,7 +172,7 @@ def facultad_mas_servicial(matriz_puestos: list) -> tuple:
 
 
 def hay_facultad_generosa(matriz_puestos: list, facultad: str, porcentaje_puestos: float) -> tuple:
-    """ TODO
+    """
     Función 4 – Existe facultad generosa.
     Indica si en la Universidad existe alguna facultad que atienda un porcentaje de puestos estudiante
     de la facultad de interés, que sea igual o superior al ingresado por parámetro.
@@ -203,6 +203,21 @@ def hay_facultad_generosa(matriz_puestos: list, facultad: str, porcentaje_puesto
     debe entonces retornar alguna de estas dos facultades, la que encuentre primero, junto con el
     porcentaje de atención correspondiente.
     """
+    encontrado = False
+    encontrada = "No existe facultad generosa"
+    porcentaje = 0
+    facultad_ocupa = puestos_ocupados(matriz_puestos, facultad)
+    puestos_porcentaje = facultad_ocupa * porcentaje_puestos
+
+    for columna in range(1, len(matriz_puestos[0])):
+        if matriz_puestos[0][columna].lower() == facultad.lower():
+            for fila in range(1, len(matriz_puestos)):
+                puestos_actual = int(matriz_puestos[fila][columna])
+                if puestos_actual >= puestos_porcentaje and not encontrado:
+                    encontrado = True
+                    encontrada = matriz_puestos[fila][0]
+                    porcentaje = round(puestos_actual/facultad_ocupa, 2) * 100
+    return encontrada, porcentaje
 
 
 def calcular_autocubrimiento(matriz_puestos: list, matriz_facultades: list) -> list:

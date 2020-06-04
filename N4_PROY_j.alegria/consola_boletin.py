@@ -104,12 +104,10 @@ def ejecutar_hay_facultad_generosa(puestos: list) -> None:
     """ Ejecuta la opcion de consultar si existe una facultad generosa
     para una facultad en especifico
     """
-
     facultad = input("Ingrese la facultad de su interes: ")
-    porcentaje = float(input("Ingrese el porcentaje de su interes: "))
-
-    # TODO: complete el codigo haciendo el llamado a la funcion del modulo que
-    # implementa este requerimiento e imprimiendo por pantalla el resultado
+    porcentaje = float(input("Ingrese el porcentaje de su interes: ")) / 100
+    generosa, porcentaje = be.hay_facultad_generosa(puestos, facultad, porcentaje)
+    print(generosa, str(porcentaje) + "%.\n")
 
 
 def ejecutar_calcular_autocubrimiento(puestos: list, estadisticas: list) -> None:
