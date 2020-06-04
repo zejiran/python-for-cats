@@ -88,9 +88,8 @@ def ejecutar_puestos_ocupados(puestos: list) -> None:
     por una facultad en especifico
     """
     facultad = input("Ingrese la facultad de su interes: ")
-
-    # TODO: complete el codigo haciendo el llamado a la funcion del modulo que
-    # implementa este requerimiento e imprimiendo por pantalla el resultado
+    puestos_ocupados = be.puestos_ocupados(puestos, facultad)
+    print("En la facultad de", facultad, "hay ocupados un total de", puestos_ocupados, "estudiantes.\n")
 
 
 def ejecutar_facultad_mas_servicial(puestos: list) -> None:

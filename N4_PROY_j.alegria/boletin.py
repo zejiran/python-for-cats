@@ -112,7 +112,7 @@ def puestos_atendidos(matriz_puestos: list, facultad_interes: str) -> int:
 
 
 def puestos_ocupados(matriz_puestos: list, facultad_interes: str) -> int:
-    """ TODO
+    """
     Función 2 – Puestos estudiante ocupados por una Facultad.
 
     :param matriz_puestos: la matriz de puestos estudiante.
@@ -125,6 +125,13 @@ def puestos_ocupados(matriz_puestos: list, facultad_interes: str) -> int:
 
     :Ejemplo: la Facultad de Educación ocupa un total de 185 puestos estudiante.
     """
+    puestos_ocupados = 0
+    for columna in range(1, len(matriz_puestos[0])):
+        if matriz_puestos[0][columna].lower() == facultad_interes.lower():
+            for fila in range(1, len(matriz_puestos)):
+                puestos_actual = matriz_puestos[fila][columna]
+                puestos_ocupados += int(puestos_actual)
+    return puestos_ocupados
 
 
 def facultad_mas_servicial(matriz_puestos: list) -> tuple:
