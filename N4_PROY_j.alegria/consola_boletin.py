@@ -139,9 +139,12 @@ def ejecutar_estadisticas_pga(estadisticas: list):
     """ Ejecuta la opcion de consultar la facultad con mayor pga, con
     menor pga y la que ocupa la mediana
     """
-
-    # TODO: complete el codigo haciendo el llamado a la funcion del modulo que
-    # implementa este requerimiento e imprimiendo por pantalla el resultado
+    estadistics = be.estadisticas_pga(estadisticas)
+    mayor, menor, mediana = estadistics
+    print("Sus estadísticas del PGA son:")
+    print("Mayor PGA:", mayor)
+    print("Menor PGA:", menor)
+    print("PGA mediana:", mediana)
 
 
 def ejecutar_hay_facultad_con_porcentaje_estudiantes(estadisticas: list):

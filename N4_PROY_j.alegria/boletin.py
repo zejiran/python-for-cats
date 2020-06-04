@@ -321,7 +321,7 @@ def dobles_de_un_programa(matriz_dobles: list, programa_interes: str) -> dict:
 
 
 def estadisticas_pga(matriz_estadisticas: list) -> list:
-    """ TODO
+    """
     Función 8 – Estadísticas del PGA.
 
     :param matriz_estadisticas: matriz de estadísticas.
@@ -335,6 +335,33 @@ def estadisticas_pga(matriz_estadisticas: list) -> list:
     :type matriz_estadisticas: list.
     :rtype: list.
     """
+    mayor = 0
+    f_mayor = None
+    menor = -1
+    f_menor = None
+    lista = list()
+    mediana = 0
+    f_mediana = None
+    for columna in range(0, len(matriz_estadisticas[0])):
+        if matriz_estadisticas[0][columna] == "PGA promedio":
+            for fila in range(1, len(matriz_estadisticas)):
+                facultad_actual = matriz_estadisticas[fila][0]
+                pga = float(matriz_estadisticas[fila][columna])
+                # Mayor.
+                if mayor < pga:
+                    mayor = pga
+                    f_mayor = facultad_actual
+                # Menor.
+                if menor > pga or menor == -1:
+                    menor = pga
+                    f_menor = facultad_actual
+                # List para mediana.
+                lista.append(pga)
+                lista.sort()
+                mediana = lista[int(len(lista) / 2)]
+                if mediana == pga:
+                    f_mediana = facultad_actual
+    return [(f_mayor, mayor), (f_menor, menor), (f_mediana, mediana)]
 
 
 def hay_facultad_con_porcentaje_estudiantes(matriz_estadisticas: list, genero: str, porcentaje: float) -> tuple:
