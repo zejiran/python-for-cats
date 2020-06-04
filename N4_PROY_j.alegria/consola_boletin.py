@@ -131,9 +131,8 @@ def ejecutar_dobles_de_un_programa(dobles: list) -> None:
     de una facultad de su interes
     """
     programa = input("Ingrese el programa de su interes: ")
-
-    # TODO: complete el codigo haciendo el llamado a la funcion del modulo que
-    # implementa este requerimiento e imprimiendo por pantalla el resultado
+    dobles_facultad = be.dobles_de_un_programa(dobles, programa)
+    print("Dobles disponibles en la facultad:\n", dobles_facultad)
 
 
 def ejecutar_estadisticas_pga(estadisticas: list):

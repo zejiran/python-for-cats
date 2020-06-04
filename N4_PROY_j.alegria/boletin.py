@@ -287,7 +287,7 @@ def doble_mas_comun(matriz_dobles: list) -> tuple:
 
 
 def dobles_de_un_programa(matriz_dobles: list, programa_interes: str) -> dict:
-    """ TODO
+    """
     Función 7 – Dobles programas con un programa de interés.
     Es equivalente estar inscrito en el Programa1 y hacer un doble programa con el programa2,
      que estar inscrito en el Programa2 y hacer doble programa con el Programa1.
@@ -309,6 +309,15 @@ def dobles_de_un_programa(matriz_dobles: list, programa_interes: str) -> dict:
     'Ing. Ambiental': 13, 'Ing. Civil': 36, 'Ing. Electronica': 1,
     'Ing. Industrial': 2, 'Ing. Mecanica': 5, 'Ing. Quimica': 2}
     """
+    dobles = dict()
+    for i in range(1, len(matriz_dobles)):
+        p1_actual = matriz_dobles[i][0]
+        if p1_actual.lower() == programa_interes.lower():
+            for j in range(1, len(matriz_dobles)):
+                p2_actual = matriz_dobles[0][j]
+                if p1_actual != p2_actual and int(matriz_dobles[i][j]) > 0:
+                    dobles[p2_actual] = int(matriz_dobles[i][j])
+    return dobles
 
 
 def estadisticas_pga(matriz_estadisticas: list) -> list:
