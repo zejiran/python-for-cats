@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Ejercicio nivel 4: Boletin Estadístico.
+Ejercicio nivel 4: Boletín Estadístico.
 Consola de Visualización.
 
 Temas:

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Ejercicio nivel 4: Boletin Estadístico.
+Ejercicio nivel 4: Boletín Estadístico.
 Consola.
 
 Temas:
@@ -40,7 +40,7 @@ def ejecutar_cargar_matriz_estadisticas() -> list:
     if len(estadisticas) == 0:
         print("El archivo seleccionado no es valido. No se pudo cargar la matriz de estadisticas.")
     else:
-        print("Se cargó la matriz de estadisticas.")
+        print("Se cargó la matriz de estadisticas.", estadisticas)
     return estadisticas
 
 
@@ -55,7 +55,7 @@ def ejecutar_cargar_matriz_puestos() -> list:
     if len(puestos) == 0:
         print("El archivo seleccionado no es valido. No se pudo cargar la matriz de puestos estudiante.")
     else:
-        print("Se cargo la matriz de puestos estudiante.")
+        print("Se cargo la matriz de puestos estudiante.", puestos)
     return puestos
 
 
@@ -65,22 +65,22 @@ def ejecutar_cargar_matriz_dobles() -> list:
     Retorno: list
         La matriz de los dobles programas entre las carreras.
     """
-    dobles = list()
     archivo = input("Por favor ingrese el nombre del archivo CSV con la matriz de dobles programas: ")
-
-    # TODO: complete el codigo haciendo el llamado a la funcion del modulo que
-    # implementa este requerimiento e imprimiendo por pantalla el mensaje que indique al usuario si
-    # fue o no posible cargar el archivo
+    dobles = be.cargar_matriz_dobles(archivo)
+    if len(dobles) == 0:
+        print("El archivo seleccionado no es valido. No se pudo cargar la matriz de dobles programas.")
+    else:
+        print("Se cargo la matriz de dobles programas.", dobles)
+    return dobles
 
 
 def ejecutar_puestos_atendidos(puestos: list) -> None:
     """ Ejecuta la opcion de consultar los puestos estudiantes atendidos
-    por una facultad en especifico
+    por una facultad en especifico.
     """
     facultad = input("Ingrese la facultad de su interes: ")
-
-    # TODO: complete el codigo haciendo el llamado a la funcion del modulo que
-    # implementa este requerimiento e imprimiendo por pantalla el resultado
+    puestos_facultad = be.puestos_atendidos(puestos, facultad)
+    print("En la facultad de", facultad, "atiende un total de", puestos_facultad, "estudiantes.\n")
 
 
 def ejecutar_puestos_ocupados(puestos: list) -> None:

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Ejercicio nivel 4: Boletin Estadístico.
+Ejercicio nivel 4: Boletín Estadístico.
 Módulo de funciones.
 
 Temas:
@@ -88,8 +88,8 @@ def cargar_matriz_dobles(ruta_archivo: str) -> list:
     return dobles
 
 
-def atendidos_por_facultad(matriz_puestos: list, facultad_interes: str) -> int:
-    """ TODO
+def puestos_atendidos(matriz_puestos: list, facultad_interes: str) -> int:
+    """
     Función 1 – Puestos estudiante ofrecidos (o atendidos) por una Facultad.
 
     :param matriz_puestos: la matriz de puestos estudiante.
@@ -102,9 +102,16 @@ def atendidos_por_facultad(matriz_puestos: list, facultad_interes: str) -> int:
 
     :Ejemplo: la Facultad de Economía atiende un total de 4107 puestos estudiante.
     """
+    puestos_facultad = 0
+    for fila in matriz_puestos:
+        if fila[0].lower() == facultad_interes.lower():
+            for columna in range(1, len(fila)):
+                puestos_actual = fila[columna]
+                puestos_facultad += int(puestos_actual)
+    return puestos_facultad
 
 
-def ocupados_por_facultad(matriz_puestos: list, facultad_interes: str) -> int:
+def puestos_ocupados(matriz_puestos: list, facultad_interes: str) -> int:
     """ TODO
     Función 2 – Puestos estudiante ocupados por una Facultad.
 
@@ -177,7 +184,7 @@ def hay_facultad_generosa(matriz_puestos: list, facultad: str, porcentaje_puesto
     """
 
 
-def porcentaje_autocubrimiento(matriz_puestos: list, matriz_facultades: list) -> list:
+def calcular_autocubrimiento(matriz_puestos: list, matriz_facultades: list) -> list:
     """ TODO
     Función 5 – Porcentaje de autocubrimiento.
     Calcula el porcentaje de autocubrimiento de todas las facultades.
@@ -201,7 +208,7 @@ def porcentaje_autocubrimiento(matriz_puestos: list, matriz_facultades: list) ->
     """
 
 
-def doble_mas_popular(matriz_dobles: list) -> tuple:
+def doble_mas_comun(matriz_dobles: list) -> tuple:
     """ TODO
     Función 6 – Doble programa más popular.
     Indica cuál es el doble programa más popular entre los estudiantes.
@@ -221,7 +228,7 @@ def doble_mas_popular(matriz_dobles: list) -> tuple:
     """
 
 
-def doble_con_interes(matriz_dobles: list, programa_interes: str) -> dict:
+def dobles_de_un_programa(matriz_dobles: list, programa_interes: str) -> dict:
     """ TODO
     Función 7 – Dobles programas con un programa de interés.
     Es equivalente estar inscrito en el Programa1 y hacer un doble programa con el programa2,
@@ -263,7 +270,7 @@ def estadisticas_pga(matriz_estadisticas: list) -> list:
     """
 
 
-def verificar_porcentaje_genero_en_facultad(matriz_estadisticas: list, genero: str, porcentaje: float) -> tuple:
+def hay_facultad_con_porcentaje_estudiantes(matriz_estadisticas: list, genero: str, porcentaje: float) -> tuple:
     """ TODO
     Función 9 – Existe facultad con un determinado porcentaje de estudiantes de un género dado.
     Indica si existe alguna facultad, que tenga un porcentaje de estudiantes
