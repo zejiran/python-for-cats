@@ -158,7 +158,7 @@ def ejecutar_hay_facultad_con_porcentaje_estudiantes(estadisticas: list):
     if hay:
         print("Hay", f_porcentaje, "porciento", "de", genero, "en la facultad de", facultad + ".\n")
     else:
-        print("No hay suficiente porcentaje de", genero, "en nignuna facultad.")
+        print("No hay suficiente porcentaje de", genero, "en ninguna facultad.")
 
 
 def iniciar_aplicacion():
