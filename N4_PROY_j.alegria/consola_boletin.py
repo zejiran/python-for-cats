@@ -15,19 +15,18 @@ import boletin as be
 
 def mostrar_menu() -> None:
     """Imprime las opciones de ejecucion disponibles para el usuario."""
-
     print("\nOpciones")
-    print("1. Cargar archivos")
-    print("2. Consultar puestos estudiante atendidos por una facultad")
-    print("3. Consultar puestos estudiante ocupados por una facultad")
-    print("4. Consultar la facultad mas servicial ")
-    print("5. Consultar si existe una facultad generosa")
-    print("6. Calcular el porcentaje de autocubrimiento ")
-    print("7. Consultar el doble progama mas popular")
-    print("8. Consultar todos los dobles programas de un programa")
-    print("9. Consultar las estadisticas del PGA")
-    print("10. Consultar si hay una facultad con mas de x% de estudiantes de un genero")
-    print("11. Salir de la aplicacion")
+    print("1. Cargar archivos.")
+    print("2. Consultar puestos estudiante atendidos por una facultad.")
+    print("3. Consultar puestos estudiante ocupados por una facultad.")
+    print("4. Consultar la facultad mas servicial.")
+    print("5. Consultar si existe una facultad generosa.")
+    print("6. Calcular el porcentaje de autocubrimiento.")
+    print("7. Consultar el doble progama mas popular.")
+    print("8. Consultar todos los dobles programas de un programa.")
+    print("9. Consultar las estadisticas del PGA.")
+    print("10. Consultar si hay una facultad con mas de x% de estudiantes de un genero.")
+    print("11. Salir de la aplicacion.")
 
 
 def ejecutar_cargar_matriz_estadisticas() -> list:
@@ -36,13 +35,12 @@ def ejecutar_cargar_matriz_estadisticas() -> list:
     Retorno: list
         La matriz de estadisticas de las facultades.
     """
-    estadisticas = list()
-    archivo = input("Por favor ingrese el nombre del archivo CSV con la matriz de estadisticas: ")
+    archivo = input("Por favor ingrese el nombre del archivo CSV con la matriz de estadísticas: ")
     estadisticas = be.cargar_matriz_estadisticas(archivo)
     if len(estadisticas) == 0:
-        print("El archivo seleccionado no es valido. No se pudo cargar la matriz de estadisticas")
+        print("El archivo seleccionado no es valido. No se pudo cargar la matriz de estadisticas.")
     else:
-        print("Se cargo la matriz de estadisticas")
+        print("Se cargó la matriz de estadisticas.")
     return estadisticas
 
 
@@ -52,13 +50,12 @@ def ejecutar_cargar_matriz_puestos() -> list:
     Retorno: list
         La matriz de los puestos estudiante.
     """
-    puestos = list()
     archivo = input("Por favor ingrese el nombre del archivo CSV con la matriz de puestos estudiante: ")
     puestos = be.cargar_matriz_puestos(archivo)
     if len(puestos) == 0:
-        print("El archivo seleccionado no es valido. No se pudo cargar la matriz de puestos estudiante")
+        print("El archivo seleccionado no es valido. No se pudo cargar la matriz de puestos estudiante.")
     else:
-        print("Se cargo la matriz de puestos estudiante")
+        print("Se cargo la matriz de puestos estudiante.")
     return puestos
 
 
