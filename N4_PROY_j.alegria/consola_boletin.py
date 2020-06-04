@@ -151,11 +151,14 @@ def ejecutar_hay_facultad_con_porcentaje_estudiantes(estadisticas: list):
     """ Ejecuta la opcion de consultar si existe una facultad con un 
     porcentaje de estudiantes por genero mayor al requerido
     """
-    genero = input("Ingrese el genero de su interes (m o f): ")
-    porcentaje = float(input("Ingrese el porcentaje de su interes: "))
-
-    # TODO: complete el codigo haciendo el llamado a la funcion del modulo que
-    # implementa este requerimiento e imprimiendo por pantalla el resultado
+    genero = input("Ingrese el genero de su interes ('m' o 'f'): ")
+    porcentaje = float(input("Ingrese el porcentaje de su interés: "))
+    hay, facultad, f_porcentaje = be.hay_facultad_con_porcentaje_estudiantes(estadisticas,
+                                                                             genero, porcentaje)
+    if hay:
+        print("Hay", f_porcentaje, "porciento", "de", genero, "en la facultad de", facultad + ".\n")
+    else:
+        print("No hay suficiente porcentaje de", genero, "en nignuna facultad.")
 
 
 def iniciar_aplicacion():

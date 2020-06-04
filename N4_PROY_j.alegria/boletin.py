@@ -216,7 +216,7 @@ def hay_facultad_generosa(matriz_puestos: list, facultad: str, porcentaje_puesto
                 if puestos_actual >= puestos_porcentaje and not encontrado:
                     encontrado = True
                     encontrada = matriz_puestos[fila][0]
-                    porcentaje = round(puestos_actual/facultad_ocupa, 2) * 100
+                    porcentaje = round(puestos_actual / facultad_ocupa, 2) * 100
     return encontrada, porcentaje
 
 
@@ -365,13 +365,13 @@ def estadisticas_pga(matriz_estadisticas: list) -> list:
 
 
 def hay_facultad_con_porcentaje_estudiantes(matriz_estadisticas: list, genero: str, porcentaje: float) -> tuple:
-    """ TODO
+    """
     Función 9 – Existe facultad con un determinado porcentaje de estudiantes de un género dado.
     Indica si existe alguna facultad, que tenga un porcentaje de estudiantes
     del género dado por parámetro superior al porcentaje dado.
 
     :param matriz_estadisticas: matriz de estadísticas.
-    :param genero: una cadena que represents un género de la forma “mujer”/”hombre”.
+    :param genero: una cadena que represents un género de la forma “m”/”f”.
     :param porcentaje: un porcentaje (valor real entre 0 y 100).
     :return: tupla de 3 posiciones.
         - La primera posición sea True o False, según se haya encontrado o no una facultad con dicha característica.
@@ -395,3 +395,31 @@ def hay_facultad_con_porcentaje_estudiantes(matriz_estadisticas: list, genero: s
     con un 65.68%. Esta función debe entonces retornar alguna de estas dos facultades, la que encuentre primero,
     junto con True y el porcentaje de mujeres correspondiente.
     """
+    encontrado = False
+    facultad = ""
+    porcentaje_superado = 0
+    porcentaje /= 100
+    # Género True si es 'mujer'.
+    if genero == "f":
+        genero = True
+    elif genero == "m":
+        genero = False
+    for columna in range(0, len(matriz_estadisticas[0])):
+        for fila in range(1, len(matriz_estadisticas)):
+            if matriz_estadisticas[0][columna] == "Estudiantes hombres":
+                hombres_actuales = int(matriz_estadisticas[fila][columna])
+                mujeres_actuales = int(matriz_estadisticas[fila][columna + 1])
+                total_actual = hombres_actuales + mujeres_actuales
+                porcentaje_m = hombres_actuales / total_actual
+                porcentaje_f = mujeres_actuales / total_actual
+                if genero:
+                    if porcentaje_f > porcentaje and not encontrado:
+                        encontrado = True
+                        facultad = matriz_estadisticas[fila][0]
+                        porcentaje_superado = porcentaje_f
+                else:
+                    if porcentaje_m > porcentaje and not encontrado:
+                        encontrado = True
+                        facultad = matriz_estadisticas[fila][0]
+                        porcentaje_superado = porcentaje_m
+    return encontrado, facultad, round(porcentaje_superado * 100, 2)
