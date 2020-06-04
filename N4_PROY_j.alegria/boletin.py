@@ -247,8 +247,8 @@ def calcular_autocubrimiento(matriz_puestos: list, matriz_facultades: list) -> l
         facultad_actual = matriz_puestos[0][columna]
         ocupados = puestos_ocupados(matriz_puestos, facultad_actual)
         ofrecidos = puestos_atendidos(matriz_puestos, facultad_actual)
-        autocubrimiento_actual = round(ocupados / ofrecidos, 2)
-        matriz_facultades[columna].append(autocubrimiento_actual)
+        autocubrimiento_actual = float(ocupados / ofrecidos)
+        matriz_facultades[columna].append(round(autocubrimiento_actual * 100, 2))
     return matriz_facultades
 
 
