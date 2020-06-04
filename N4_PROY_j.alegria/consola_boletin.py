@@ -22,7 +22,7 @@ def mostrar_menu() -> None:
     print("4. Consultar la facultad mas servicial.")
     print("5. Consultar si existe una facultad generosa.")
     print("6. Calcular el porcentaje de autocubrimiento.")
-    print("7. Consultar el doble progama mas popular.")
+    print("7. Consultar el doble programa más popular.")
     print("8. Consultar todos los dobles programas de un programa.")
     print("9. Consultar las estadisticas del PGA.")
     print("10. Consultar si hay una facultad con mas de x% de estudiantes de un genero.")
@@ -122,9 +122,8 @@ def ejecutar_calcular_autocubrimiento(puestos: list, estadisticas: list) -> None
 def ejecutar_doble_mas_comun(dobles: list) -> None:
     """ Ejecuta la opcion de consultar el doble programa mas comun
     """
-
-    # TODO: complete el codigo haciendo el llamado a la funcion del modulo que
-    # implementa este requerimiento e imprimiendo por pantalla el resultado
+    comun = be.doble_mas_comun(dobles)
+    print("El doble programa más común es", comun)
 
 
 def ejecutar_dobles_de_un_programa(dobles: list) -> None:

@@ -253,7 +253,7 @@ def calcular_autocubrimiento(matriz_puestos: list, matriz_facultades: list) -> l
 
 
 def doble_mas_comun(matriz_dobles: list) -> tuple:
-    """ TODO
+    """
     Función 6 – Doble programa más popular.
     Indica cuál es el doble programa más popular entre los estudiantes.
     Es equivalente estar inscrito en el Programa1 y tener un doble programa con el programa2,
@@ -270,6 +270,20 @@ def doble_mas_comun(matriz_dobles: list) -> tuple:
     Por otra parte, hay 1 estudiante de Diseño, cursando Ingeniería Mecánica como segundo programa.
     Por consiguiente el doble programa “Ing. Mecanica – Diseño” cuenta con 16 estudiantes.
     """
+    doble = "Programa1 - Programa2"
+    estudiantes = 0
+    for i in range(1, len(matriz_dobles)):
+        p1_actual = matriz_dobles[i][0]
+        for j in range(i + 1, len(matriz_dobles)):
+            estudiantes_actual = 0
+            p2_actual = matriz_dobles[0][j]
+            if p1_actual != p2_actual:
+                doble_actual = p1_actual + " - " + p2_actual
+                estudiantes_actual += int(matriz_dobles[i][j]) + int(matriz_dobles[j][i])
+                if estudiantes_actual > estudiantes:
+                    estudiantes = estudiantes_actual
+                    doble = doble_actual
+    return doble, estudiantes
 
 
 def dobles_de_un_programa(matriz_dobles: list, programa_interes: str) -> dict:
