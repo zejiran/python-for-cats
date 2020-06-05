@@ -79,3 +79,27 @@ def calcular_suma_diagonal(diagonal_mayor: bool, matriz: list) -> int:
             actual = matriz[-i - 1][i]
         suma += actual
     return suma
+
+
+def binarizar_imagen(imagen: list, umbral: float) -> list:
+    """ Binarizar (Matriz de Listas)
+    Parámetros:
+      imagen (list): Matriz que representa la imagen
+      umbral (float): Umbral de binarización
+    Retorno:
+      list: Matriz que representa la imagen binarizada
+    """
+    alto = len(imagen)
+    ancho = len(imagen[0])
+
+    for i in range(alto):
+        for j in range(ancho):
+            promedio_pixel = 0
+            for k in range(3):
+                promedio_pixel += imagen[i][j][k]
+            promedio_pixel /= 3
+            if promedio_pixel >= umbral:
+                imagen[i][j] = [255, 255, 255]
+            else:
+                imagen[i][j] = [0, 0, 0]
+    return imagen
