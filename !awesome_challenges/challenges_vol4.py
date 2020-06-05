@@ -91,7 +91,6 @@ def binarizar_imagen(imagen: list, umbral: float) -> list:
     """
     alto = len(imagen)
     ancho = len(imagen[0])
-
     for i in range(alto):
         for j in range(ancho):
             promedio_pixel = 0
@@ -102,4 +101,38 @@ def binarizar_imagen(imagen: list, umbral: float) -> list:
                 imagen[i][j] = [255, 255, 255]
             else:
                 imagen[i][j] = [0, 0, 0]
+    return imagen
+
+
+def convertir_negativo(imagen: list) -> list:
+    """ Transformar a Negativo (Matriz de Listas)
+    Parámetros:
+      imagen (list): Matriz que representa la imagen
+    Retorno:
+      list: Matriz que representa la imagen convertida a negativo
+    """
+    alto = len(imagen)
+    ancho = len(imagen[0])
+    for i in range(alto):
+        for j in range(ancho):
+            for k in range(3):
+                nuevo = abs(imagen[i][j][k] - 1)
+                imagen[i][j][k] = nuevo
+    return imagen
+
+
+def reflejar_imagen(imagen: list) -> list:
+    """ Reflejar Verticalmente (Matriz de Listas)
+    Parámetros:
+      imagen (list): Matriz que representa la imagen
+    Retorno:
+      list: Matriz que representa la imagen reflejada
+    """
+    alto = len(imagen)
+    ancho = len(imagen[0])
+    for i in range(alto):
+        for j in range(int(ancho / 2)):
+            temp = imagen[i][j]
+            imagen[i][j] = imagen[i][-j - 1]
+            imagen[i][-j - 1] = temp
     return imagen
