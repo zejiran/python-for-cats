@@ -126,8 +126,7 @@ def reflejar_imagen(imagen: list) -> list:
     Parámetros:
       imagen (list): Matriz que representa la imagen
     Retorno:
-      list: Matriz que representa la imagen refle
-      ada
+      list: Matriz que representa la imagen reflejada
     """
     alto = len(imagen)
     ancho = len(imagen[0])
