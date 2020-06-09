@@ -126,7 +126,8 @@ def reflejar_imagen(imagen: list) -> list:
     Parámetros:
       imagen (list): Matriz que representa la imagen
     Retorno:
-      list: Matriz que representa la imagen reflejada
+      list: Matriz que representa la imagen refle
+      ada
     """
     alto = len(imagen)
     ancho = len(imagen[0])
@@ -135,4 +136,23 @@ def reflejar_imagen(imagen: list) -> list:
             temp = imagen[i][j]
             imagen[i][j] = imagen[i][-j - 1]
             imagen[i][-j - 1] = temp
+    return imagen
+
+
+def convertir_a_grises(imagen: list) -> list:
+    """ Escala de Grises (Matriz de Tuplas)
+    Parámetros:
+      imagen (list): Matriz que representa la imagen
+    Retorno:
+      list: Matriz que representa la imagen convertida a grises
+    """
+    alto = len(imagen)
+    ancho = len(imagen[0])
+    for i in range(alto):
+        for j in range(ancho):
+            promedio_pixel = 0
+            for k in range(3):
+                promedio_pixel += imagen[i][j][k]
+            promedio_pixel /= 3
+            imagen[i][j] = [promedio_pixel] * 3
     return imagen
