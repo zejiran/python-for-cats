@@ -654,4 +654,191 @@ def ordenar_cadena(cadena: str) -> str:
     return ''.join(cadena)
 
 
+def producto_mas_barato(catalogo: dict) -> str:
+    """ El novio tacaño
+    Parámetros:
+      catalogo (dict): Diccionario que contiene los nombres de los productos como llaves y sus respectivos
+                       precios como valores.
+    Retorno:
+      str: El nombre del artículo más barato en el catálogo. Si no hay ningún artículo que valga menos de
+           10000, retornará None. Si el catálogo está vacío, retornará la cadena "No hay productos para
+           escoger".
+    """
+    mas_barato = "No hay productos para escoger"
+    baratalor = -1
+    for producto in catalogo:
+        if catalogo[producto] < baratalor or baratalor == -1:
+            baratalor = catalogo[producto]
+            mas_barato = producto
+        elif catalogo[producto] == baratalor and mas_barato[0] > producto[0]:
+            mas_barato = producto
+    if baratalor > 10000:
+        mas_barato = None
+    return mas_barato
 
+
+def descifrar_codigo_cesar(texto_cifrado: str, corrimiento: int) -> str:
+    """ Descifrar código César
+    Parámetros:
+      texto_cifrado (str): El texto cifrado que se quiere descifrar. Puede incluir minúsculas, mayúsculas,
+                           espacios y otros caracteres especiales. Sólo tendrá letras del alfabeto inglés.
+      corrimiento (int): El corrimiento (cantidad de lugares que se corre una letra) que se usó para generar
+                         el cifrado, y por ende debe usarse para descrifar el mensaje
+    Retorno:
+      str: La cadena descifrada, incluyendo espacios y caracteres especiales que tenía la original.
+    """
+    traducido = []
+    mayuscula = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    minuscula = 'abcdefghijklmnopqrstuvwxyz'
+    for cada_letra in texto_cifrado:
+        if cada_letra in mayuscula:
+            index = mayuscula.index(cada_letra)
+            traduciendo = (index - corrimiento) % 26
+            nueva_letra = mayuscula[traduciendo]
+            traducido.append(nueva_letra)
+        elif cada_letra in minuscula:
+            index = minuscula.index(cada_letra)
+            traduciendo = (index - corrimiento) % 26
+            nueva_letra = minuscula[traduciendo]
+            traducido.append(nueva_letra)
+        else:
+            traducido.append(cada_letra)
+    traducido = ''.join(traducido)
+    return traducido
+
+
+def calcular_estadisticas_completas(estudiantes_tareas: dict) -> dict:
+    """ Estadisticas completas de las tareas
+    Parámetros:
+      estudiantes_tareas (dict): Un diccionario de diccionarios con la información de los estudiantes y sus
+                                 tareas.
+    Retorno:
+      dict: Un diccionario de diccionarios. Las llaves del diccionario deben ser los nombres de las tareas. Los
+            valores del diccionario deben ser diccionarios que tengan las llaves "mayor", "mejor", "menor",
+            "peor", "promedio", "cantidad" y "total". Los valores asociados a estas llaves deben representar la
+            mayor nota, el nombre del estudiante con la mejor nota, la peor nota, el nombre del estudiante con
+            la peor nota, el promedio, la cantidad de estudiantes que hicieron la tarea y el valor total que
+            resulta de sumar todas las notas obtenidas en esa tarea.
+    """
+    completas = {}
+    tareas = []
+    for estudiante in estudiantes_tareas:
+        for tarea in estudiantes_tareas[estudiante]:
+            if tarea not in tareas:
+                tareas.append(tarea)
+    for tarea in tareas:
+        mayor_tarea = 0
+        mejor = "Reinalitorus"
+        menor_tarea = -1
+        peor = "Jaimitolo"
+        hicieron = 0
+        valor_total = 0
+        for estudiante in estudiantes_tareas:
+            if tarea in estudiantes_tareas[estudiante]:
+                nota_actual = estudiantes_tareas[estudiante][tarea]
+                # Mayor - Mejor.
+                if nota_actual > mayor_tarea:
+                    mayor_tarea = nota_actual
+                    mejor = estudiante
+                # Menor - Peor.
+                if nota_actual < menor_tarea or menor_tarea == -1:
+                    menor_tarea = nota_actual
+                    peor = estudiante
+                # Hicieron.
+                hicieron += 1
+                # Total.
+                valor_total += nota_actual
+                # Promedio.
+                promedio_tareas = valor_total / hicieron
+                completas[tarea] = {"mayor": mayor_tarea, "mejor": mejor, "menor": menor_tarea, "peor": peor,
+                                    "promedio": promedio_tareas, "cantidad": hicieron, "total": valor_total}
+    return completas
+
+
+def mejor_aerolinea(vuelos: dict) -> str:
+    """ La mejor aerolínea
+    Parámetros:
+      vuelos (dict): Es un diccionario de diccionarios con la información de los vuelos.
+    Retorno:
+      str: El nombre de la mejor aerolínea (la que tenga menor retraso promedio)
+    """
+    aero_con_promedioretraso = {}
+    # vuelos = {'codigovuelo':{'aerolinea': nombre, 'retraso': minutos}}
+    for vuelo in vuelos:
+        aereo = vuelos[vuelo]['aerolinea']
+        retra = vuelos[vuelo]['retraso']
+        if aereo not in aero_con_promedioretraso:
+            retra_total = 0
+            cantidad = 0
+        else:
+            retra_total = aero_con_promedioretraso[aereo][0]
+            cantidad = aero_con_promedioretraso[aereo][1]
+        aero_con_promedioretraso[aereo] = (retra_total + retra, cantidad + 1)
+    menor_aero = 'aviancazaza'
+    menor_promedio = -1
+    for aerolinea in aero_con_promedioretraso:
+        promedio_actual = aero_con_promedioretraso[aerolinea][0] / aero_con_promedioretraso[aerolinea][1]
+        if promedio_actual < menor_promedio or menor_promedio == -1:
+            menor_promedio = promedio_actual
+            menor_aero = aerolinea
+    return menor_aero
+
+
+def listar_aeropuertos_sin_salida(vuelos: dict) -> list:
+    """ Aeropuertos sin salida
+    Parámetros:
+      vuelos (dict): Es un diccionario de diccionarios con la información de los vuelos.
+    Retorno:
+      list: Una lista de cadenas de caracteres que tiene los códigos de los aeropuertos de los cuales no
+            salieron vuelos.
+    """
+    aerosinvuelo = []
+    destinos = []
+    origenes = []
+    # vuelos = {'codigovuelo':{'aerolinea': nombre, 'retraso': minutos}}
+    for vuelo in vuelos:
+        origen = vuelos[vuelo]['origen']
+        destino = vuelos[vuelo]['destino']
+        origenes.append(origen)
+        destinos.append(destino)
+    for destino in destinos:
+        if destino not in origenes and destino not in aerosinvuelo:
+            aerosinvuelo.append(destino)
+    return aerosinvuelo
+
+
+def buscar_vuelos_escala(vuelos: dict, origen: str, destino: str) -> list:
+    """ Buscar vuelos (con escala)
+    Parámetros:
+      vuelos (dict): Es un diccionario de diccionarios con la información de los vuelos.
+      origen (str): El código del aeropuerto de origen
+      destino (str): El código del aeropuerto de destino
+    Retorno:
+      list: Retorna una lista con los itinerarios posibles entre el origen y el destino. Cada itinerario debe
+            ser una lista con los códigos de los vuelos que componen el itinerario. Si el itinerario no tiene
+            escalas, tendrá un solo elemento (el código del vuelo directo). Si el itinerario tiene una escala
+            tendrá dos códigos (el código del primer vuelo seguido del código del segundo vuelo).
+    """
+    lista = []
+    if vuelos != {}:
+        # Vuelos directos.
+        for codigo_vuelo in vuelos:
+            if vuelos[codigo_vuelo]['origen'] == origen and vuelos[codigo_vuelo]['destino'] == destino:
+                lista.append([codigo_vuelo])
+        # Vuelos con una escala
+        codigos_origen = []
+        codigos_destino = []
+        for codigo_vuelo in vuelos:
+            diccionario = vuelos[codigo_vuelo]
+            if diccionario['origen'] == origen and diccionario['destino'] != destino:
+                codigos_origen.append(codigo_vuelo)
+            if diccionario['destino'] == destino and diccionario['origen'] != origen:
+                codigos_destino.append(codigo_vuelo)
+        for a in codigos_origen:
+            for b in codigos_destino:
+                llegada_a = (vuelos[a]['salida'] + vuelos[a]['duracion'] + vuelos[a]['retraso']) / 60
+                salida_b = (vuelos[b]['salida']) / 60
+                if llegada_a < salida_b:
+                    if vuelos[a]['destino'] == vuelos[b]['origen']:
+                        lista.append([a, b])
+    return lista
