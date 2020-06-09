@@ -155,3 +155,110 @@ def convertir_a_grises(imagen: list) -> list:
             promedio_pixel /= 3
             imagen[i][j] = [promedio_pixel] * 3
     return imagen
+
+
+def encontrar_mejor_puntaje_equipo(salon: list, m: int) -> int:
+    """ El Mejor Equipo
+    Parámetros:
+      salon (list): Una lista de listas que representa una matriz cuadrada, con el número de problemas
+                    resueltos por cada estudiante.
+      m (int): Número de equipos en los que el profesor divide el salón
+    Retorno:
+      int: Entero que representa la suma de puntajes de los integrantes del mejor equipo en el juego planteado
+           por el profesor.
+    """
+    n = len(salon)
+    primer_e = 0
+    segundo_e = 0
+    # Filas.
+    for i in range(n):
+        # Columnas.
+        for j in range(n):
+            if j <= (n/m) - 1:
+                primer_e += salon[i][j]
+            elif 2 * (n/m) - 1 >= j >= (n/m):
+                segundo_e += salon[i][j]
+    if primer_e > segundo_e:
+        return primer_e
+    else:
+        return segundo_e
+
+
+def calcular_multiplicacion_en_columna(matriz: list, columna: int) -> int:
+    """ Multiplicación en la columna
+    Parámetros:
+      matriz (list): Una matriz de enteros, sobre la cual hay que calcular la suma de la columna dada por
+                     parámetro.
+      columna (int): Entero que indica sobre cual de las columnas hay que hacer las multiplicaciones. Es un
+                     valor entre 0 y M-1, donde M es la cantidad de columnas de la matriz.
+    Retorno:
+      int: El valor de la multiplicación de todos los elementos que se encuentran en una columna particular de
+           la matríz.
+    """
+    m = 1
+    for i in range(len(matriz)):
+        for j in range(len(matriz[0])):
+            if columna == j:
+                m *= matriz[i][j]
+    return m
+
+
+def promedio_fila(matriz: list, fila: int) -> float:
+    """ La fila juiciosa
+    Parámetros:
+      matriz (list): Matriz que representa el salón de clases
+      fila (int): Fila a la cual se debe calcular el promedio
+    Retorno:
+      float: Promedio de la fila que el profesor solicitó.
+    """
+    if fila <= 0:
+        return -1
+    else:
+        fila = fila - 1
+        suma = 0
+        estudiantes = 0
+        for j in range(len(matriz[fila])):
+            if matriz[fila][j] != 0:
+                suma += matriz[fila][j]
+                estudiantes += 1
+        promedio = suma / estudiantes
+        if promedio == 0:
+            return 0
+        else:
+            return round(promedio, 2)
+
+
+def pintar_x(matriz: list, operacion: str) -> list:
+    """ Repintar la X
+    Parámetros:
+      matriz (list): Una matriz cuadrada con números positivos
+      operacion (str): Cadena con el símbolo de la operación a realizar. El símbolo puede ser '+', '-', '*'
+                       o '/'
+    Retorno:
+      list: La matriz modificada según la operación indicada.
+    """
+    if operacion == '+':
+        matriz[0][0] += matriz[0][0]
+        matriz[0][2] += matriz[0][2]
+        matriz[1][2] += matriz[1][2]
+        matriz[2][0] += matriz[2][0]
+        matriz[2][2] += matriz[2][2]
+    elif operacion == '-':
+        matriz[0][0] -= matriz[0][0]
+        matriz[0][2] -= matriz[0][2]
+        matriz[1][2] -= matriz[1][2]
+        matriz[2][0] -= matriz[2][0]
+        matriz[2][2] -= matriz[2][2]
+    elif operacion == '*':
+        matriz[0][0] *= matriz[0][0]
+        matriz[0][2] *= matriz[0][2]
+        matriz[1][2] *= matriz[1][2]
+        matriz[2][0] *= matriz[2][0]
+        matriz[2][2] *= matriz[2][2]
+    elif operacion == '/':
+        matriz[0][0] /= matriz[0][0]
+        matriz[0][2] /= matriz[0][2]
+        matriz[1][2] /= matriz[1][2]
+        matriz[2][0] /= matriz[2][0]
+        matriz[2][2] /= matriz[2][2]
+    return matriz
