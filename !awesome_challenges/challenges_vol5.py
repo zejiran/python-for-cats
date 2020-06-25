@@ -102,24 +102,34 @@ word2 = input()
 words = [word1, word2]
 len_words = list(map(len, words))
 print(max(len_words))
+
+
 # --------------------------------------------
 def get_sum(a, b):
     return a + b
+
+
 # --------------------------------------------
 def closest_mod_5(x):
     mod = x % 5
     if mod == 0:
         return x
     return x + (5 - x % 5)
+
+
 # --------------------------------------------
 def captain_adder(name):
     print('captain', name)
+
+
 # --------------------------------------------
 user_city = "Istanbul"
+
 
 def change_city(new_user_city):
     global user_city
     user_city = new_user_city
+
 
 change_city("Paris")
 print(user_city)
@@ -270,13 +280,16 @@ while True:
 print(supremus_cat_cafe[0])
 # --------------------------------------------
 from math import factorial
+
 x = int(input())
 print(factorial(x))
 # --------------------------------------------
 import string
+
 print(string.digits + '\n' + string.ascii_lowercase)
 # --------------------------------------------
 from random import seed, randint
+
 n = int(input())
 seed(a=n, version=2)
 print(randint(-100, 100))
@@ -297,8 +310,154 @@ sentence = input().split()
 random.seed(43)
 random.shuffle(sentence)
 print(' '.join(sentence))
+
+
 # --------------------------------------------
+class Angel:
+    color = "white"
+    feature = "wings"
+    home = "Heaven"
+
+
+class Demon:
+    color = "red"
+    feature = "horns"
+    home = "Hell"
+
+
+little_angel = Angel()
+little_demon = Demon()
+little_kids = (little_angel, little_demon)
+for kid in little_kids:
+    print(f'{kid.color}\n{kid.feature}\n{kid.home}')
+
+
 # --------------------------------------------
+class Human:
+    species = 'Homo Sapiens'
+    n_legs = 2
+    n_arms = 2
+
+
 # --------------------------------------------
+class RockBand:
+    genre, n_members, key_instruments = 'rock', 4, ['electric guitar', 'drums']
+
+
+tampikos = RockBand()
+print(f'{tampikos.genre}\n{tampikos.n_members}\n{tampikos.key_instruments}')
+
+
 # --------------------------------------------
+class Store:
+    def __init__(self, name, category):
+        self.name = name
+        self.category = category
+
+
+shop = Store("GAP", "clothes")
+print(shop.name, shop.category)
+
+
+# --------------------------------------------
+class Movie:
+    def __init__(self, title, director, year):
+        self.title, self.director, self.year = title, director, year
+
+
+titanic, star_wars, fight_club = (Movie('Titanic', 'James Cameron', '1997'),
+                                  Movie('Star Wars', 'George Lucas', '1977'),
+                                  Movie('Fight Club', 'David Fincher', '1999'))
+
+
+# --------------------------------------------
+class Student:
+    def __init__(self, name, last_name, birth_year):
+        self.name, self.last_name, self.birth_year = name, last_name, birth_year
+        self.id = f'{name[0]}{last_name}{birth_year}'
+
+
+n, ln, by = (input() for i in range(3))
+student = Student(n, ln, by)
+print(student.id)
+
+
+# --------------------------------------------
+class Mountain:
+    def __init__(self, name, height):
+        self.name = name
+        self.height = height
+
+    def convert_height(self):
+        return self.height / 0.3048
+
+
+# --------------------------------------------
+import math
+
+
+class Hexagon:
+    def __init__(self, side_length):
+        self.side_length = side_length
+
+    def get_area(self):
+        return round((3 * math.sqrt(3) * self.side_length ** 2) / 2, 3)
+
+
+# --------------------------------------------
+import math
+
+
+class Point:
+    def __init__(self, xx, yy):
+        self.xx = xx
+        self.yy = yy
+
+    def dist(self, another_instance):
+        return math.sqrt((self.xx - another_instance.xx) ** 2 + (self.yy - another_instance.yy) ** 2)
+
+
+# --------------------------------------------
+class House:
+    def __init__(self, floors):
+        self.floors = floors
+        self.color = None
+
+    def paint(self, color):
+        self.color = color
+
+
+# --------------------------------------------
+class Stack():
+
+    def __init__(self):
+        self.my_stack = []
+
+    def push(self, el):
+        self.my_stack.append(el)
+
+    def pop(self):
+        delete = self.peek()
+        self.my_stack.remove(delete)
+        return delete
+
+    def peek(self):
+        return self.my_stack[-1]
+
+    def is_empty(self):
+        return bool(not self.my_stack)
+
+
+# --------------------------------------------
+class PiggyBank:
+    def __init__(self, dollars, cents):
+        self.dollars = dollars
+        self.cents = cents
+
+    def add_money(self, deposit_dollars, deposit_cents):
+        self.dollars += deposit_dollars
+        self.cents += deposit_cents
+        while self.cents > 99:
+            self.cents -= 100
+            self.dollars += 1
 # --------------------------------------------
