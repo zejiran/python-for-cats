@@ -1,2 +1,2 @@
-# PythonForCats
-Some exercises in Python for beginners
+# Python for Cats
+Some exercises in Python for beginners.
