@@ -393,7 +393,6 @@ class Mountain:
 
 
 # --------------------------------------------
-import math
 
 
 class Hexagon:
@@ -405,7 +404,6 @@ class Hexagon:
 
 
 # --------------------------------------------
-import math
 
 
 class Point:
@@ -460,4 +458,297 @@ class PiggyBank:
         while self.cents > 99:
             self.cents -= 100
             self.dollars += 1
+
+
+piggy1 = PiggyBank(2, 2)
+
+
+def create_piggy(dollars, cents):
+    return {'dollars': dollars, 'cents': cents}
+
+
+piggy2 = create_piggy(2, 2)
+# --------------------------------------------
+print(' \n'.join('You are the best programmer!'.split()))
+# --------------------------------------------
+print(len('That is \n mine'))
+# --------------------------------------------
+print('\\\\')
+# --------------------------------------------
+print(str(45 / 9 + 16 * (5 + 8)))
+print('mathematics')
+# --------------------------------------------
+print("""
+I am = I'm
+I have = I've
+I will = I'll
+I had / would = I'd
+""")
+# --------------------------------------------
+print("What would I watch tonight?")
+fave_tv_show = 'Re:ゼロ'
+my_answer = fave_tv_show
+# --------------------------------------------
+age = 20
+if age < 18:
+    print("You can't watch Game of Thrones!")
+else:
+    print("You are welcome to be here. Sit, have a drink and enjoy the show!")
+# --------------------------------------------
+print(input().upper())
+# --------------------------------------------
+print(input().strip(',.!?').lower())
+# --------------------------------------------
+marks = ',.!?'
+preprocess = ''.join(list(filter(lambda x: x not in marks, input())))
+print(preprocess.lower())
+
+
+# --------------------------------------------
+def create_full_name(name, last_name):
+    return f'{name} {last_name}'
+
+
+name1, last_name1 = "John", "Lennon"
+full_name1 = create_full_name(name1, last_name1)
+
+name2, last_name2 = "Hermione", "Granger"
+full_name2 = create_full_name(name2, last_name2)
+
+name3, last_name3 = "Lady", "Gaga"
+full_name3 = create_full_name(name3, last_name3)
+
+
+# --------------------------------------------
+def f1(x):
+    return x ** 2 + 1
+
+
+def f2(x):
+    return 1 / x ** 2
+
+
+def f3(x):
+    return x ** 2 - 1
+
+
+def f(x):
+    if x <= 0:
+        return f1(x)
+    if 0 < x < 1:
+        return f2(x)
+    return f3(x)
+
+
+# --------------------------------------------
+def fahrenheit_to_celsius(temps_f):
+    temps_c = (temps_f - 32) * 5 / 9
+    return round(temps_c, 2)
+
+
+def celsius_to_fahrenheit(temps_c):
+    temps_f = temps_c * 9 / 5 + 32
+    return round(temps_f, 2)
+
+
+def main():
+    """Entry point of the program."""
+    temperature, unit = input().split()  # read the input
+    temperature = float(temperature)
+    if unit == 'F':
+        print(f'{fahrenheit_to_celsius(temperature)} C')
+    else:
+        print(f'{celsius_to_fahrenheit(temperature)} F')
+
+
+# --------------------------------------------
+hand = [input() for i in range(6)]
+face_cards = {'Jack': 11, 'Queen': 12, 'King': 13, 'Ace': 14}
+rank = 0
+for card in hand:
+    if card not in face_cards:
+        rank += int(card)
+    else:
+        rank += face_cards[card]
+rank /= 6
+print(rank)
+# --------------------------------------------
+words = input().lower().split()
+word_amount = dict()
+for word in words:
+    if word not in word_amount:
+        word_amount[word] = 1
+    else:
+        word_amount[word] += 1
+for word, count in word_amount.items():
+    print(f'{word} {count}')
+# --------------------------------------------
+f, s = (float(input()) for i in range(2))
+print('{}'.format(f + s))
+# --------------------------------------------
+x, y = input().split()
+print(f'{x} of {y}')
+# --------------------------------------------
+random_numbers = [1, 22, 333, 4444, 55555]
+for index, random in enumerate(random_numbers):
+    random_numbers[index] = str(random)
+print("\n".join(random_numbers))
+# --------------------------------------------
+random_numbers = [1, 22, 333, 4444, 55555]
+print("\n".join(map(str, random_numbers)))
+# --------------------------------------------
+print(''.join([word.title() for word in input().lower().split('_')]))
+# --------------------------------------------
+# safe_main_module.py
+
+name = "Juan"
+
+
+def main():
+    print("Hello,", name)
+
+
+if __name__ == "__main__":
+    main()
+# --------------------------------------------
+import datetime
+
+birthday = datetime.datetime(2002, 5, 27)
+# --------------------------------------------
+some_date = datetime.datetime(3486, 5, 15, 23, 59)
+print(some_date.time())
+# --------------------------------------------
+import datetime
+
+now_time = datetime.datetime.now()
+# --------------------------------------------
+import math
+
+
+def my_sqrt(value):
+    if isinstance(value, str):
+        return "The string should be converted into a numeric data type"
+    if not isinstance(value, (int, float)):
+        return None
+    return math.sqrt(value)
+
+
+# --------------------------------------------
+file = open('test_file.txt', 'r', encoding='utf-16')
+print(file.readline())
+file.close()
+# --------------------------------------------
+# First letter from each line.
+file = open('test.txt', 'r')
+for line in file:
+    print(line[0])
+file.close()
+# --------------------------------------------
+file = open('sums.txt', 'r')
+for line in file:
+    numbers = line.strip('\n').split()
+    for i, number in enumerate(numbers):
+        numbers[i] = int(number)
+    print(sum(numbers))
+file.close()
+# --------------------------------------------
+file = open('sums.txt', 'r')
+for line in file:
+    print(sum(int(x) for x in line.split()))
+file.close()
+# --------------------------------------------
+file = open('input.txt', 'w', encoding='utf-8')
+file.write(input())
+file.close()
+# --------------------------------------------
+with open('input.txt', 'w') as f:
+    f.write(input())
+# --------------------------------------------
+with open('planets.txt', 'w', encoding='utf-8') as file:
+    planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune']
+    for planet in planets:
+        file.write(planet + '\n')
+# --------------------------------------------
+with open('animals.txt') as file:
+    animals = file.readlines()
+    animals = [animal.replace('\n', '') for animal in animals]
+new_file = open('animals_new.txt', 'w')
+new_file.write(' '.join(animals))
+new_file.close()
+# --------------------------------------------
+with open('test.txt', 'w') as f:
+    f.write('Tada!')
+# --------------------------------------------
+with open('name.txt') as f1, open('surname.txt') as f2, open('full_name.txt', 'w') as f3:
+    name = f1.read()
+    surname = f2.read()
+    full_name = name + ' ' + surname
+    f3.write(full_name)
+# --------------------------------------------
+for i in range(1, 11):
+    with open(f'file{i}.txt', 'w') as file:
+        file.write(str(i))
+# --------------------------------------------
+import json
+
+colors = {"rainbow": ["red", "orange", "yellow", "green", "blue", "indigo", "violet"],
+          "CMYK": ["cyan", "magenta", "yellow", "key color"],
+          "RBG": ["red", "blue", "green"]}
+json_colors = json.dumps(colors, indent=4)
+with open('colors.json', 'w') as json_file:
+    json_file.write(json_colors)
+# --------------------------------------------
+import json
+
+colors = {"rainbow": ["red", "orange", "yellow", "green", "blue", "indigo", "violet"],
+          "CMYK": ["cyan", "magenta", "yellow", "key color"],
+          "RBG": ["red", "blue", "green"]}
+with open("colors.json", "w") as file:
+    json.dump(colors, file)
+# --------------------------------------------
+import json
+
+
+json_string = input()
+json_dict = json.loads(json_string)
+print(f'{type(json_dict)}\n{json_dict}')
+# --------------------------------------------
+with open('users.json', 'r') as json_file:
+    dict_from_json = json.load(json_file)
+users_defined = len(dict_from_json['users'])
+print(users_defined)
+# --------------------------------------------
+template = """
+<html>
+  <h2>{{ blog_name }}</h2>
+</html>
+"""
+# --------------------------------------------
+template = """
+<html>
+  <ul>
+  {% for todo in todos %}
+    <li>{{ todo }}</li>
+  {% endfor %}
+  </ul>
+</html>
+"""
+# --------------------------------------------
+template = """
+<html>
+  <div>{% if post.author != None %} {{ post.text }} 
+       {% else %} No author
+       {% endif %}
+  </div>
+</html>
+"""
+# --------------------------------------------
+add_book(title='SAO')
+# --------------------------------------------
+def get_bonus(salary, percentage=35):
+    return int(salary * percentage / 100)
+# --------------------------------------------
+def get_percentage(real, round_digits=None):
+    percentage = real * 100
+    return f'{round(percentage, round_digits)}%'
 # --------------------------------------------
