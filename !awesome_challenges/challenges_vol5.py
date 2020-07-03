@@ -752,3 +752,31 @@ def get_percentage(real, round_digits=None):
     percentage = real * 100
     return f'{round(percentage, round_digits)}%'
 # --------------------------------------------
+
+shopping_list = []
+
+shopping_list.append("milk")
+shopping_list.append("olive oil")
+shopping_list.append("bananas")
+shopping_list.remove("milk")
+shopping_list.append("brownie")
+# --------------------------------------------
+shopping_list = []
+
+shopping_list.append('milk')
+shopping_list.append('olive oil')
+shopping_list.append('bananas')
+shopping_list[0] = 'brownie'
+# --------------------------------------------
+n = int(input())
+list_ = [int(input()) for _i in range(n)]
+print(list_)
+# --------------------------------------------
+
+# --------------------------------------------
+
+# --------------------------------------------
+
+# --------------------------------------------
+
+# --------------------------------------------
