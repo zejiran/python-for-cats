@@ -708,7 +708,6 @@ with open("colors.json", "w") as file:
 # --------------------------------------------
 import json
 
-
 json_string = input()
 json_dict = json.loads(json_string)
 print(f'{type(json_dict)}\n{json_dict}')
@@ -744,13 +743,19 @@ template = """
 """
 # --------------------------------------------
 add_book(title='SAO')
+
+
 # --------------------------------------------
 def get_bonus(salary, percentage=35):
     return int(salary * percentage / 100)
+
+
 # --------------------------------------------
 def get_percentage(real, round_digits=None):
     percentage = real * 100
     return f'{round(percentage, round_digits)}%'
+
+
 # --------------------------------------------
 
 shopping_list = []
@@ -772,11 +777,66 @@ n = int(input())
 list_ = [int(input()) for _i in range(n)]
 print(list_)
 # --------------------------------------------
+from django.shortcuts import redirect, Http404
+from django.views import View
+
+
+class TodoView(View):
+    all_todos = []
+
+    def delete(self, request, to_do, *args, **kwargs):
+        if to_do not in self.all_todos:
+            raise Http404
+        self.all_todos.remove(to_do)
+        return redirect('/')
+
 
 # --------------------------------------------
+from django.shortcuts import redirect
+from django.views import View
+
+
+class TodoView(View):
+    all_todos = []
+
+    def post(self, request, *args, **kwargs):
+        to_do = request.POST.get('todo')
+        if to_do not in self.all_todos:
+            self.all_todos.append(to_do)
+        return redirect('/')
+
 
 # --------------------------------------------
+from django.shortcuts import redirect
+from django.views import View
+
+
+class TodoView(View):
+    all_todos = []
+
+    def post(self, request, *args, **kwargs):
+        to_do = request.POST.get('todo')
+        is_important = request.POST.get('important')
+        if to_do not in self.all_todos:
+            self.all_todos.insert(0, to_do) if is_important else self.all_todos.append(to_do)
+        return redirect('/')
+
 
 # --------------------------------------------
+from django.shortcuts import redirect
+from django.views import View
 
+
+class TodoView(View):
+    all_todos = []
+
+    def post(self, request, *args, **kwargs):
+        to_do = request.POST.get('todo')
+        is_important = request.POST.get('important')
+        if to_do not in self.all_todos:
+            if is_important:
+                self.all_todos.insert(0, to_do)
+            else:
+                self.all_todos.append(to_do)
+        return redirect('/')
 # --------------------------------------------
