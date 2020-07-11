@@ -856,10 +856,27 @@ oceans = tuple(oceans)
 # --------------------------------------------
 singleton = ([0, 1, 1, 2, 3, 5, 8, 13, 21],)
 # --------------------------------------------
+print(sum(ord(input()) for _ in range(2)))
 # --------------------------------------------
+print(''.join(chr(int(input())) for _ in range(4)))
 # --------------------------------------------
+code = int(input())
+print(chr(code) if 32 <= code <= 126 else False)
 # --------------------------------------------
+zero_bytes = bytes(5)
 # --------------------------------------------
+str_to_bytes = input().encode()
+print(str_to_bytes[-1])
 # --------------------------------------------
+message = input().encode()
+key = sum((int(input())).to_bytes(2, byteorder='big'))
+decoded = ''
+for character in message:
+    decoded += chr(character + key)
+print(decoded)
 # --------------------------------------------
+message = input().encode()
+key = sum((int(input())).to_bytes(2, byteorder='big'))
+decoded = ''.join(map(lambda x: chr(x + key), message))
+print(decoded)
 # --------------------------------------------
