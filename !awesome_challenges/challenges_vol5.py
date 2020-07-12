@@ -880,3 +880,61 @@ key = sum((int(input())).to_bytes(2, byteorder='big'))
 decoded = ''.join(map(lambda x: chr(x + key), message))
 print(decoded)
 # --------------------------------------------
+import socket
+# Create socket.
+client_socket = socket.socket()
+# Address.
+hostname = 'localhost'
+port = 7070
+address = (hostname, port)
+# Connect to server.
+client_socket.connect(address)
+# Prepare data.
+data = 'Neko'
+# Convert to bytes.
+data = data.encode()
+# Send data through socket.
+client_socket.send(data)
+# Receive the response.
+response = client_socket.recv(1024)
+# Decode bytes to string.
+response = response.decode()
+print(response)
+client_socket.close()
+# --------------------------------------------
+import socket
+# Socket as a context manager.
+with socket.socket() as client_socket:
+    hostname = '127.0.0.1'
+    port = 9090
+    address = (hostname, port)
+    client_socket.connect(address)
+    data = 'Neko'
+    data = data.encode()
+    client_socket.send(data)
+    response = client_socket.recv(1024)
+    response = response.decode()
+    print(response)
+# --------------------------------------------
+import sys
+args = sys.argv  # List of arguments.
+if len(args) != 3:
+    print("The script should be called with two arguments, the first and the second number to be multiplied")
+else:
+    first_num = float(args[1])
+    second_num = float(args[2])
+    product = first_num * second_num
+    print("The product of " + args[1] + " times " + args[2] + " equals " + str(product))
+# --------------------------------------------
+my_list = args[1:]
+my_list = [int(i) for i in my_list]
+print(my_list)
+# --------------------------------------------
+deposit = int(input())
+years = 0
+while deposit <= 700000:
+    deposit += deposit * 0.071
+    years += 1
+print(years)
+# --------------------------------------------
+# --------------------------------------------
