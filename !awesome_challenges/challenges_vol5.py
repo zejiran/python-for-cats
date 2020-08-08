@@ -839,6 +839,8 @@ class TodoView(View):
             else:
                 self.all_todos.append(to_do)
         return redirect('/')
+
+
 # --------------------------------------------
 prices = input().split()
 print(prices[3 - 1])
@@ -881,6 +883,7 @@ decoded = ''.join(map(lambda x: chr(x + key), message))
 print(decoded)
 # --------------------------------------------
 import socket
+
 # Create socket.
 client_socket = socket.socket()
 # Address.
@@ -903,6 +906,7 @@ print(response)
 client_socket.close()
 # --------------------------------------------
 import socket
+
 # Socket as a context manager.
 with socket.socket() as client_socket:
     hostname = '127.0.0.1'
@@ -917,6 +921,7 @@ with socket.socket() as client_socket:
     print(response)
 # --------------------------------------------
 import sys
+
 args = sys.argv  # List of arguments.
 if len(args) != 3:
     print("The script should be called with two arguments, the first and the second number to be multiplied")
@@ -936,5 +941,158 @@ while deposit <= 700000:
     deposit += deposit * 0.071
     years += 1
 print(years)
+
+
 # --------------------------------------------
+def my_function(x):
+    return -1 if x < 0 else 1
+
+
+# --------------------------------------------
+lambda x: -1 if x < 0 else 1
+# --------------------------------------------
+func = (lambda x: 'even' if x % 2 == 0 else 'odd')
+# --------------------------------------------
+a = 1
+b = 2
+c = 3
+
+func = (lambda a, b, c: (a + b) * c)
+
+result = func(a, b, c)
+# --------------------------------------------
+numbers = [int(n) for n in input()]
+less_than_5 = [n for n in numbers if n < 5]
+greater_than_5 = [n for n in numbers if n > 5]
+print(less_than_5)
+print(greater_than_5)
+# --------------------------------------------
+digits = [int(n) for n in input() if int(n) % 2 == 1]
+print(digits)
+# --------------------------------------------
+numbers = [int(n) for n in input()]
+running = []
+accumulated = 0
+for _, n in enumerate(numbers):
+    running.append(n + accumulated)
+    accumulated += n
+print(running)
+# --------------------------------------------
+numbers = [int(n) for n in input()]
+running = [sum(numbers[0:i + 1]) for i in range(len(numbers))]
+print(running)
+
+
+# --------------------------------------------
+def celsius_to_fahrenheit(c):
+    return ((c + 40) * 1.8) - 40
+
+
+daily_temp_c = [20.5, 19, 15, 25, 27, 30, 31, 29, 26, 21,
+                19, 25, 27.5, 28, 26, 29.5, 31, 27.5, 26, 29,
+                18, 17.5, 17, 16.5, 19, 20, 25, 26.5, 27, 28,
+                20.5, 19, 25, 27.5, 28, 26, 15, 25, 27, 28]
+daily_temp_f = list(map(celsius_to_fahrenheit, daily_temp_c))
+temp_above_80 = list(filter(lambda x: x > 80, daily_temp_f))
+print(len(temp_above_80))
+# --------------------------------------------
+scores_maths = [100, 75, 90, 95, 60, 50, 95, 85, 70, 75,
+                90, 85, 60, 45, 100, 70, 65, 50, 55, 95,
+                50, 45, 35, 100, 95, 90, 85, 90, 80, 85,
+                95, 45, 60, 45, 80, 70, 55, 45, 60, 90]
+scores_physics = [50, 65, 85, 100, 60, 55, 90, 85, 70, 90,
+                  50, 40, 100, 45, 95, 70, 75, 60, 50, 100,
+                  60, 90, 40, 90, 95, 90, 80, 95, 85, 80,
+                  95, 90, 75, 50, 80, 70, 50, 35, 65, 90]
+scores_english = [50, 40, 100, 45, 95, 70, 75, 60, 50, 100,
+                  50, 45, 35, 100, 95, 90, 85, 90, 80, 85,
+                  90, 85, 60, 45, 100, 70, 65, 50, 55, 95,
+                  50, 65, 85, 100, 60, 55, 90, 85, 70, 90]
+overall_scores = list(map(lambda x, y, z: x + y + z, scores_maths, scores_physics, scores_english))
+admitted_students = list(filter(lambda x: x >= 270, overall_scores))
+print(len(admitted_students))
+# --------------------------------------------
+even = [0, 2, 4, 6, 8]
+odd = [1, 3, 5, 7, 9]
+length = len(even)
+my_sum = []
+i = 0
+while i < length:
+    my_sum.append(even[i] + odd[i])
+    i = i + 1
+remainders = [x % 3 for x in my_sum]
+nonzero_remainders = [r for r in remainders if r]
+# --------------------------------------------
+even = [0, 2, 4, 6, 8]
+odd = [1, 3, 5, 7, 9]
+my_sum = list(map(lambda x, y: x + y, even, odd))
+remainders = list(map(lambda x: x % 3, my_sum))
+nonzero_remainders = list(filter(lambda r: r, remainders))
+# --------------------------------------------
+numbers = [1, 2, 3]
+my_generator = (n ** 2 for n in numbers)
+print(next(my_generator))
+# Outputs 1
+print(next(my_generator))
+# Outputs 4
+print(next(my_generator))
+# Outputs 9
+my_list = [n ** 2 for n in numbers]
+print(my_list)
+# Outputs [1, 4, 9]
+my_generator = (n ** 2 for n in numbers)
+for n in my_generator:
+    print(n)
+# Outputs
+# 1
+# 4
+# 9
+# --------------------------------------------
+n = int(input())
+
+
+def squares(times):
+    i = 1
+    while i <= times:
+        yield i ** 2
+        i += 1
+
+
+_squares = squares(n)
+for n in _squares:
+    print(n)
+# --------------------------------------------
+n = int(input())
+
+
+def even(evens):
+    i = 0
+    while i < evens:
+        yield i * 2
+        i += 1
+
+_evens = even(n)
+for n in _evens:
+    print(n)
+# --------------------------------------------
+for a, b in zip(v1, v2):
+    x = a + b
+    print(x)
+# --------------------------------------------
+for e_word, s_word, f_word in zip(english, spanish, french):
+    print(e_word, s_word, f_word)
+# --------------------------------------------
+word_1, word_2 = (input() for i in range(2))
+brand_name = ''
+for letter_1, letter_2 in zip(word_1, word_2):
+    brand_name += letter_1 + letter_2
+print(brand_name)
+# --------------------------------------------
+
+# --------------------------------------------
+
+# --------------------------------------------
+
+# --------------------------------------------
+
 # --------------------------------------------
