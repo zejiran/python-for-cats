@@ -1088,11 +1088,23 @@ for letter_1, letter_2 in zip(word_1, word_2):
     brand_name += letter_1 + letter_2
 print(brand_name)
 # --------------------------------------------
+import itertools
 
+for first_name, middle_name in itertools.product(first_names, middle_names):
+    print(first_name, middle_name)
 # --------------------------------------------
+import itertools
 
+teams = ['Best-ever', 'Not-so-good', 'Amateurs']
+for plays in itertools.combinations(teams, 2):
+    print(plays)
 # --------------------------------------------
+from itertools import combinations
 
+flower_names = ['rose', 'tulip', 'sunflower']
+for r in range(1, 4):
+    for bouquets in combinations(flower_names, r):
+        print(bouquets)
 # --------------------------------------------
 
 # --------------------------------------------
